@@ -1,23 +1,37 @@
+import { products } from "@/constants/products";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 import ProductCard from "./shared/ProductCard";
+import { productType } from "@/types/types";
 
 const BestSelling = () => {
   return (
-    <section className='lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
+    <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <div className='flex items-center justify-between'>
         <h1 className='text-secondary text-[27px] font-medium'>
           Our Best Selling
         </h1>
-        <Link
-          href='/collection'
-          className='flex items-center gap-1 text-[#616161]'>
-          <span>See More</span>
-          <GoArrowRight />
-        </Link>
+        <div className=''>
+          <Link
+            href='/collection'
+            className='flex items-center gap-1 text-[#616161]'>
+            <span>See More</span>
+            <GoArrowRight />
+          </Link>
+        </div>
       </div>
-      <div className=''>
-        {/* <ProductCard /> */}
+      <div className='flex items-center lg:justify-between justify-center mt-5 gap-[22px] lg:flex-nowrap flex-wrap'>
+        {products.bestSelling.map((product: productType) => (
+          <ProductCard
+            key={product.id}
+            price={product.price}
+            title={product.title}
+            imgURL={product.image}
+            colors={product.colors}
+            width={product.width}
+            height={product.height}
+          />
+        ))}
       </div>
     </section>
   );

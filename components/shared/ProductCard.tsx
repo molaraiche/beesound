@@ -1,27 +1,35 @@
+import { cardType } from "@/types/types";
 import Image from "next/image";
-interface cardType {
-  imgURL: string;
-  title: string;
-  price: number;
-  colors: string;
-}
-const ProductCard = ({ imgURL, title, price, colors }: cardType) => {
+
+const ProductCard = ({
+  imgURL,
+  title,
+  price,
+  colors,
+  width,
+  height,
+}: cardType) => {
+  console.log(colors);
   return (
     <div className='w-[304px] h-[498px]'>
       <div className='bg-dark-white w-[303px] h-[395px] flex items-center justify-center rounded-[5px] '>
         <Image
           src={imgURL}
-          alt='BeeSound hero image'
-          width={318}
-          height={306}
+          alt={title}
+          width={width}
+          height={height}
           className='rotate-[20deg]'
         />
       </div>
-      <div className=''>
+      <div className='mt-5'>
         <h3 className='text-2xl font-medium'>{title}</h3>
-        <div>
-          <div
-            className={`w-[27px] h-[27px] bg-[${colors}] rounded-full`}></div>
+        <div className='flex gap-2 my-5'>
+          {colors.map((color) => (
+            <div
+              key={color}
+              style={{ background: color }}
+              className={`w-[27px] h-[27px] rounded-full`}></div>
+          ))}
         </div>
         <p className='text-2xl font-medium'>$ {price} </p>
       </div>

@@ -4,8 +4,8 @@ import React from "react";
 
 const Home = () => {
   return (
-    <section className='lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
-      <div className='bg-primary lg:container rounded-tr-[5px] rounded-tl-[5px] rounded-bl-[5px] rounded-br-[150px] flex items-center lg:justify-between justify-center lg:h-[430px] h-auto lg:flex-nowrap flex-wrap my-10 p-6'>
+    <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
+      <div className='bg-primary rounded-tr-[5px] rounded-tl-[5px] rounded-bl-[5px] rounded-br-[150px] flex items-center lg:justify-between justify-center lg:h-[430px] h-auto lg:flex-nowrap flex-wrap my-10 p-6 w-full'>
         <div className='flex flex-col'>
           <h1 className='lg:text-5xl md:text-4xl sm:text-3xl xsm:text-3xl  text-white font-medium lg:w-[520px] w-full leading-[58px]'>
             Discover The Brand New Headset In Market
