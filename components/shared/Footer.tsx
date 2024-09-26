@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className='bg-[#F2F5FF] mt-20 w-full flex items-center justify-center'>
       <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
-        <section className='flex items-center justify-between w-full h-[30vh] '>
+        <section className='flex items-center justify-between  w-full lg:h-[30vh] h-auto lg:flex-nowrap flex-wrap'>
           <div className='flex flex-col gap-4'>
             <Link href='/' className='flex items-center gap-1'>
               <Image
@@ -22,7 +22,7 @@ const Footer = () => {
               />
               <span className='text-[23px]'>BeeSound</span>
             </Link>
-            <p className='w-[370px]'>
+            <p className='lg:w-[370px] w-full'>
               BeeSound is the one of the world’s largest online shops that
               providing over 1500 headphones for its costumers from over 80
               countries
@@ -50,33 +50,37 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className='flex flex-col w-[157px] h-[172px] '>
-            <h4 className='text-2xl font-medium mb-2'>Site Map</h4>
-            <Link href='' className='mt-1'>
-              About Us
-            </Link>
-            <Link href='' className='mt-1'>
-              Contact Us
-            </Link>
-            <Link href='' className='mt-1'>
-              FAQ&apos;s
-            </Link>
-            <Link href='' className='mt-1'>
-              Customers Services
-            </Link>
+          <div className='flex justify-between gap-5 w-full my-4'>
+            <div className='flex flex-col lg:w-[157px] w-fit h-[172px] '>
+              <h4 className='text-2xl font-medium mb-2'>Site Map</h4>
+              <Link href='' className='mt-1'>
+                About Us
+              </Link>
+              <Link href='' className='mt-1'>
+                Contact Us
+              </Link>
+              <Link href='' className='mt-1'>
+                FAQ&apos;s
+              </Link>
+              <Link href='' className='mt-1'>
+                Customers Services
+              </Link>
+            </div>
+            <div className='flex flex-col lg:w-[157px] w-fit h-[172px] '>
+              <h4 className='text-2xl font-medium mb-2'>Products</h4>
+              <Link href='/' className='mt-1'>
+                Headphones
+              </Link>
+              <Link href='/' className='mt-1'>
+                Speakers
+              </Link>
+            </div>
           </div>
-          <div className='flex flex-col w-[157px] h-[172px] '>
-            <h4 className='text-2xl font-medium mb-2'>Products</h4>
-            <Link href='/' className='mt-1'>
-              Headphones
-            </Link>
-            <Link href='/' className='mt-1'>
-              Speakers
-            </Link>
-          </div>
-          <div className='flex flex-col w-[310px] h-[172px] items-center justify-between '>
+          <div className='flex flex-col lg:w-[310px] w-full h-[172px] items-center justify-between '>
             <h4 className='text-2xl font-medium mb-2'>Subscription</h4>
-            <form action='' className=''>
+            <form
+              action=''
+              className='flex flex-col items-center justify-center'>
               <input
                 type='email'
                 className='bg-[#E8E8E8] p-4 w-[307px] rounded-[10px]'
