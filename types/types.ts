@@ -21,4 +21,6 @@ export interface cardType {
   colors: string[];
   width?: number;
   height?: number;
+  oldPrice?: number;
+  discount?: boolean;
 }

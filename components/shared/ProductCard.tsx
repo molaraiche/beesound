@@ -8,17 +8,26 @@ const ProductCard = ({
   colors,
   width,
   height,
+  oldPrice,
+  discount,
 }: cardType) => {
   return (
-    <div className='w-[304px] h-[498px]'>
+    <div className='w-[304px] h-[498px] relative lg:my-0 my-10'>
       <div className='bg-dark-white w-[303px] h-[395px] flex items-center justify-center rounded-[5px] '>
-        <Image
-          src={imgURL}
-          alt={title}
-          width={width}
-          height={height}
-          className='rotate-[20deg] hover:scale-110	transition-all'
-        />
+        <div className='flex'>
+          {discount ? (
+            <div className='absolute top-[5vh] rounded-full bg-[#F00] w-[40px] h-[40px] flex items-center justify-center text-white'>
+              50%
+            </div>
+          ) : null}
+          <Image
+            src={imgURL}
+            alt={title}
+            width={width}
+            height={height}
+            className='rotate-[20deg] hover:scale-110	transition-all'
+          />
+        </div>
       </div>
       <div className='mt-5'>
         <h3 className='text-2xl font-medium'>{title}</h3>
@@ -30,6 +39,12 @@ const ProductCard = ({
               className={`w-[27px] h-[27px] rounded-full`}></div>
           ))}
         </div>
+
+        {oldPrice && (
+          <p className='text-2xl font-medium text-[#616161] line-through	'>
+            $ {oldPrice},00
+          </p>
+        )}
         <p className='text-2xl font-medium'>$ {price} </p>
       </div>
     </div>
