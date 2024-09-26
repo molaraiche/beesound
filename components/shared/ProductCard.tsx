@@ -9,7 +9,6 @@ const ProductCard = ({
   width,
   height,
 }: cardType) => {
-  console.log(colors);
   return (
     <div className='w-[304px] h-[498px]'>
       <div className='bg-dark-white w-[303px] h-[395px] flex items-center justify-center rounded-[5px] '>
@@ -18,7 +17,7 @@ const ProductCard = ({
           alt={title}
           width={width}
           height={height}
-          className='rotate-[20deg]'
+          className='rotate-[20deg] hover:scale-110	transition-all'
         />
       </div>
       <div className='mt-5'>
