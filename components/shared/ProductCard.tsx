@@ -10,6 +10,7 @@ const ProductCard = ({
   height,
   oldPrice,
   discount,
+  classeName,
 }: cardType) => {
   return (
     <div className='w-[304px] h-[498px] relative lg:my-0 my-10'>
@@ -25,7 +26,7 @@ const ProductCard = ({
             alt={title}
             width={width}
             height={height}
-            className='rotate-[20deg] hover:scale-110	transition-all'
+            className={classeName}
           />
         </div>
       </div>

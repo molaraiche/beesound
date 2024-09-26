@@ -31,6 +31,7 @@ const BestSelling = () => {
             colors={product.colors}
             width={product.width}
             height={product.height}
+            classeName='rotate-[20deg] hover:scale-110	transition-all'
           />
         ))}
       </div>

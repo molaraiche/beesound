@@ -23,4 +23,5 @@ export interface cardType {
   height?: number;
   oldPrice?: number;
   discount?: boolean;
+  classeName?: string;
 }
