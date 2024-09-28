@@ -1,8 +1,8 @@
-import { cardType } from "@/types/types";
+import { productType } from "@/types/types";
 import Image from "next/image";
 
 const ProductCard = ({
-  imgURL,
+  image,
   title,
   price,
   colors,
@@ -11,7 +11,7 @@ const ProductCard = ({
   oldPrice,
   discount,
   classeName,
-}: cardType) => {
+}: productType) => {
   return (
     <div className='w-[304px] h-[498px] relative lg:my-0 my-10'>
       <div className='bg-dark-white w-[303px] h-[395px] flex items-center justify-center rounded-[5px] '>
@@ -22,7 +22,7 @@ const ProductCard = ({
             </div>
           ) : null}
           <Image
-            src={imgURL}
+            src={image}
             alt={title}
             width={width}
             height={height}
