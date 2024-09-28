@@ -35,16 +35,29 @@ const Collection = () => {
       </div>
       <div className='flex gap-8 justify-center items-center mt-20 flex-wrap'>
         {products.newArrivals.map((product: productType) => (
-          <ProductCard
+          <Link
             key={product.id}
-            price={product.price}
-            title={product.title}
-            imgURL={product.image}
-            colors={product.colors}
-            width={product.width}
-            height={product.height}
-            classeName='hover:scale-110	transition-all'
-          />
+            href={{
+              pathname: `/collection/${product.id}`,
+              query: {
+                title: product.title,
+                price: product.price,
+                imgURL: product.image,
+                colors: product.colors,
+                width: product.width,
+                height: product.height,
+              },
+            }}>
+            <ProductCard
+              price={product.price}
+              title={product.title}
+              imgURL={product.image}
+              colors={product.colors}
+              width={product.width}
+              height={product.height}
+              classeName='hover:scale-110	transition-all'
+            />
+          </Link>
         ))}
       </div>
     </section>
