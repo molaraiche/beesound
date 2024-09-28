@@ -1,15 +1,18 @@
 "use client";
+import ProductsDetails from "@/components/shared/ProductsDetails";
 import { useSearchParams } from "next/navigation";
 
 const ProductPage = () => {
   const params = useSearchParams();
   const title = params.get("title");
   const price = params.get("price");
+  const imgURL = params.get("imgURL");
+  const colors = params.get("colors");
+  const width = params.get("width");
+  const height = params.get("height");
+  const width = params.get("width");
   return (
-    <div>
-      <div className=''>{title}</div>
-      <div className=''> {price} </div>
-    </div>
+    <ProductsDetails imgURL={""} title={title} price={price} colors={[]} />
   );
 };
 

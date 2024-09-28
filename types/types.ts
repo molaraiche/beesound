@@ -15,6 +15,8 @@ export type categoriesType = {
 };
 
 export interface cardType {
+  id: Key | null | undefined;
+  image: string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined;
   imgURL: string;
   title: string;
   price: number;
@@ -24,4 +26,9 @@ export interface cardType {
   oldPrice?: number;
   discount?: boolean;
   classeName?: string;
+  brand?: string;
+  model?: string;
+  color?: string;
+  factor?: string;
+  technology?: string;
 }
