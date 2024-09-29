@@ -1,25 +1,28 @@
-"use client";
 import ProductsDetails from "@/components/shared/ProductsDetails";
-import { useSearchParams } from "next/navigation";
+import { getProductById } from "@/utils/server.action"; // Import the server action to fetch product data
 
-const ProductPage = () => {
-  const params = useSearchParams();
+interface ProductPageProps {
+  params: {
+    id: string;
+  };
+}
 
-  const title = params.get("title");
-  const price = params.get("price");
-  const imgURL = params.get("imgURL");
-  const colors = params.get("colors");
-  const width = params.get("width");
-  const height = params.get("height");
+const ProductPage = async ({ params }: ProductPageProps) => {
+  const product = await getProductById(params.id); // Fetch the product data on the server
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
   return (
     <ProductsDetails
-      id={0}
-      imgURL={imgURL}
-      title={title}
-      price={price}
-      colors={colors}
-      width={width}
-      height={width}
+      id={product.id}
+      image={product.image} // Adjust field names to match your product schema
+      title={product.title}
+      price={product.price}
+      colors={product.colors} // Assuming colors/images are part of the product data
+      width={product.width}
+      height={product.height}
     />
   );
 };
