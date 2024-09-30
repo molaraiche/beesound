@@ -4,7 +4,6 @@ import { productType } from "@/types/types";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Back from "./Back";
-import { getAllDocuments } from "@/utils/server.action";
 import Link from "next/link";
 
 const ProductsDetails = async ({
@@ -18,8 +17,8 @@ const ProductsDetails = async ({
   factor,
   images,
   technology,
+  AllProducts,
 }: productType) => {
-  const products: productType[] = await getAllDocuments();
   return (
     <div>
       <Back />
@@ -89,7 +88,7 @@ const ProductsDetails = async ({
       <div className='w-[100px] h-[100px]'>
         <h1>Related Porudcts</h1>
         <div className='w-[100px] h-[100px]'>
-          {products.map((product) => (
+          {AllProducts?.map((product: productType) => (
             <Link href={`/${product.type}/${product.id}`} key={product.id}>
               <Image
                 src={product.image}

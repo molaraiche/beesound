@@ -3,7 +3,7 @@ import { db } from "@/firebase/firebaseConfig";
 import { productType } from "@/types/types";
 
 // Function to get all documents from the "collection" in Firestore
-export async function getAllDocuments(): Promise<productType[]> {
+export async function getAllCollection(): Promise<productType[]> {
   const querySnapshot = await getDocs(collection(db, "collection")); // Replace with your collection name
   const data: productType[] = [];
 
