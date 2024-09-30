@@ -1,5 +1,5 @@
 import ProductsDetails from "@/components/shared/ProductsDetails";
-import { getProductById } from "@/utils/server.action"; // Import the server action to fetch product data
+import { getProductById } from "@/utils/server.action";
 
 interface ProductPageProps {
   params: {
@@ -8,7 +8,7 @@ interface ProductPageProps {
 }
 
 const ProductPage = async ({ params }: ProductPageProps) => {
-  const product = await getProductById(params.id); // Fetch the product data on the server
+  const product = await getProductById(params.id);
 
   if (!product) {
     return <div>Product not found</div>;
@@ -17,12 +17,18 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   return (
     <ProductsDetails
       id={product.id}
-      image={product.image} // Adjust field names to match your product schema
+      image={product.image}
       title={product.title}
       price={product.price}
-      colors={product.colors} // Assuming colors/images are part of the product data
+      colors={product.colors}
       width={product.width}
       height={product.height}
+      images={product.images}
+      brand={product.brand}
+      model={product.model}
+      technology={product.technology}
+      color={product.color}
+      factor={product.factor}
     />
   );
 };

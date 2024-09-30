@@ -37,7 +37,7 @@ const ProductCard = ({
             <div
               key={color}
               style={{ background: color }}
-              className={`w-[27px] h-[27px] rounded-full`}></div>
+              className={`w-[27px] h-[27px] rounded-full border border-red-600`}></div>
           ))}
         </div>
 
