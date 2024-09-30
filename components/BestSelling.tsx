@@ -1,11 +1,13 @@
-import { products } from "@/constants/products";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 import ProductCard from "./shared/ProductCard";
 import { productType } from "@/types/types";
 import PremiumCard from "./shared/PremiumCard";
+import { getAllCollection } from "@/utils/server.action";
 
-const BestSelling = () => {
+const BestSelling = async () => {
+  const products: productType[] = await getAllCollection();
+
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <div className='flex items-center justify-between'>
@@ -22,17 +24,21 @@ const BestSelling = () => {
         </div>
       </div>
       <div className='flex items-center lg:justify-between justify-center mt-5 gap-[22px] lg:flex-nowrap flex-wrap'>
-        {products.bestSelling.map((product: productType) => (
-          <ProductCard
-            key={product.id}
-            price={product.price}
-            title={product.title}
-            imgURL={product.image}
-            colors={product.colors}
-            width={product.width}
-            height={product.height}
-            classeName='rotate-[20deg] hover:scale-110	transition-all'
-          />
+        {products.map((product: productType) => (
+          <Link key={product.id} href={`/collection/${product.id}`}>
+            <ProductCard
+              id={product.id}
+              price={product.price}
+              title={product.title}
+              image={product.image}
+              colors={product.colors}
+              width={product.width}
+              height={product.height}
+              cardWidth={304}
+              cardHeight={498}
+              classeName='rotate-[20deg] hover:scale-110 transition-all'
+            />
+          </Link>
         ))}
       </div>
       <div className='flex gap-10 items-center justify-center my-20 lg:flex-nowrap md:flex-nowrap flex-wrap'>

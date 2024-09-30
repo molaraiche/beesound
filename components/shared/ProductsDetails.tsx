@@ -20,7 +20,7 @@ const ProductsDetails = async ({
   AllProducts,
 }: productType) => {
   return (
-    <div>
+    <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <Back />
       <div className='flex items-center justify-between w-full '>
         <div className='flex items-center justify-center w-[60%] '>
@@ -85,17 +85,31 @@ const ProductsDetails = async ({
           </div>
         </div>
       </div>
-      <div className='w-[100px] h-[100px]'>
-        <h1>Related Porudcts</h1>
-        <div className='w-[100px] h-[100px]'>
+      <div className='flex flex-col justify-center '>
+        <h1 className='text-2xl font-medium mt-4'>Related Porudcts</h1>
+        <div className=''>
           {AllProducts?.map((product: productType) => (
             <Link href={`/${product.type}/${product.id}`} key={product.id}>
-              <Image
-                src={product.image}
-                alt={product.title}
-                width={200}
-                height={200}
-              />
+              <div className='bg-dark-white w-[200px] h-[200px]'>
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  width={200}
+                  height={200}
+                />
+                <p className='font-semibold mt-2'> {product.title} </p>
+                <p className='font-medium my-2'> {product.price} </p>
+                <div className='flex gap-2'>
+                  {product.colors.map((color) => (
+                    <div
+                      style={{
+                        background: color,
+                      }}
+                      className='w-[20px] h-[20px] rounded-full'
+                      key={color}></div>
+                  ))}
+                </div>
+              </div>
             </Link>
           ))}
         </div>
