@@ -11,10 +11,13 @@ const ProductCard = ({
   oldPrice,
   discount,
   classeName,
+  cardHeight,
+  cardWidth,
 }: productType) => {
   return (
-    <div className='w-[304px] h-[498px] relative lg:my-0 my-10'>
-      <div className='bg-dark-white w-[303px] h-[395px] flex items-center justify-center rounded-[5px] '>
+    <div
+      className={`w-[${cardWidth}px] h-[${cardHeight}px] relative lg:my-0 my-10`}>
+      <div className='bg-dark-white flex items-center justify-center rounded-[5px] '>
         <div className='flex'>
           {discount ? (
             <div className='absolute top-[5vh] rounded-full bg-[#F00] w-[40px] h-[40px] flex items-center justify-center text-white'>

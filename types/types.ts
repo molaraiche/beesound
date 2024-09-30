@@ -15,6 +15,9 @@ export type productType = {
   oldPrice?: number;
   classeName?: string;
   discount?: boolean;
+  cardWidth?: number;
+  cardHeight?: number;
+  type?: string;
 };
 
 export type categoriesType = {

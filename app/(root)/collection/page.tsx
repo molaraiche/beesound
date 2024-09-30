@@ -20,6 +20,8 @@ const Collection = async () => {
               colors={product.colors}
               width={product.width}
               height={product.height}
+              cardWidth={304}
+              cardHeight={498}
               classeName='rotate-[20deg] hover:scale-110 transition-all'
             />
           </Link>

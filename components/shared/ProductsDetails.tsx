@@ -1,10 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-// import ProductCard from "./ProductCard";
 import { productType } from "@/types/types";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import Back from "./Back";
+import { getAllDocuments } from "@/utils/server.action";
+import Link from "next/link";
 
-const ProductsDetails = ({
+const ProductsDetails = async ({
   title,
   image,
   price,
@@ -16,43 +19,46 @@ const ProductsDetails = ({
   images,
   technology,
 }: productType) => {
+  const products: productType[] = await getAllDocuments();
   return (
     <div>
-      <div className=''>
-        <Link href=''>X</Link>
-      </div>
+      <Back />
       <div className='flex items-center justify-between w-full '>
         <div className='flex items-center justify-center w-[60%] '>
           <div className='w-[303px] h-[359px]'>
-            <Image src={image} alt='' width={303} height={359} />
+            <Zoom>
+              <Image src={image} alt='' width={303} height={359} />
+            </Zoom>
           </div>
           <div className='flex flex-wrap w-[400px] gap-4'>
             {images?.map((img) => (
               <div
                 key={img}
-                className='w-[150px] h-[176px] bg-red-500 flex items-center justify-center'>
-                <Image
-                  src={img}
-                  alt=''
-                  width={120}
-                  height={120}
-                  className='object-cover'
-                />
+                className='w-[150px] h-[176px] bg-dark-white flex items-center justify-center'>
+                <Zoom>
+                  <Image
+                    src={img}
+                    alt=''
+                    width={120}
+                    height={120}
+                    className='object-cover'
+                  />
+                </Zoom>
               </div>
             ))}
           </div>
         </div>
         <div className='flex justify-center w-[40%] flex-col'>
           <h1 className='text-2xl font-medium'>{title}</h1>
-          <div className='flex'>
+          <div className='flex gap-2 my-3'>
             {colors.map((color) => (
               <div
                 key={color}
                 style={{ background: color }}
-                className={`w-[27px] h-[27px] rounded-full`}></div>
+                className={`w-[27px] h-[27px] rounded-full `}></div>
             ))}
           </div>
-          <p>${price}</p>
+          <p className='text-2xl font-medium'>${price}</p>
           <div className='flex flex-col mt-3'>
             <p className=' mt-3'>
               <span className='font-medium'> Brand:</span> <span>{brand}</span>
@@ -73,16 +79,27 @@ const ProductsDetails = ({
               <span>{technology}</span>
             </p>
           </div>
-          <div className=''>
+          <div className='mt-4'>
             <button className='bg-primary w-[279px] p-4 text-dark-white font-medium text-lg rounded-[10px] '>
               Add To Cart
             </button>
           </div>
         </div>
       </div>
-      <div className=''>
+      <div className='w-[100px] h-[100px]'>
         <h1>Related Porudcts</h1>
-        <div className=''></div>
+        <div className='w-[100px] h-[100px]'>
+          {products.map((product) => (
+            <Link href={`/${product.type}/${product.id}`} key={product.id}>
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={200}
+                height={200}
+              />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
