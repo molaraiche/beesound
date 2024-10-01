@@ -21,7 +21,12 @@ const ProductsDetails = async ({
 }: productType) => {
   return (
     <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
-      <Back />
+      <Back
+        icon={true}
+        style={
+          "w-[40px] h-[40px] rounded-full flex items-center justify-center bg-primary text-dark-white"
+        }
+      />
       <div className='flex items-center justify-between w-full '>
         <div className='flex items-center justify-center w-[60%] '>
           <div className='w-[303px] h-[359px]'>

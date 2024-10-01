@@ -1,8 +1,8 @@
 "use client";
-import { IoCloseSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { IoCloseSharp } from "react-icons/io5";
 
-const Back = () => {
+const Back = ({ icon, style }: { icon: boolean; style: string }) => {
   const router = useRouter();
   const goBack = () => {
     router.back();
@@ -10,10 +10,8 @@ const Back = () => {
 
   return (
     <div className='flex items-center justify-end h-[10vh]'>
-      <div
-        onClick={goBack}
-        className='w-[40px] h-[40px] rounded-full flex items-center justify-center bg-primary text-dark-white'>
-        <IoCloseSharp />
+      <div onClick={goBack} className={style}>
+        {icon ? <IoCloseSharp /> : "Cancel"}
       </div>
     </div>
   );

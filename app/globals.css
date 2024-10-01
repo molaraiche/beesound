@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-#prdSize {
-  width: 100px;
-  height: 100px;
+
+@layer utilities {
+
+  .input {
+    @apply py-2 px-4 outline-none rounded-[10px] w-full text-secondary font-medium
+  }
+
+  .label {
+    @apply lg:block hidden w-full
+  }
 }
