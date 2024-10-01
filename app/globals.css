@@ -6,10 +6,18 @@
 @layer utilities {
 
   .input {
-    @apply py-2 px-4 outline-none rounded-[10px] w-full text-secondary font-medium
+    @apply py-2 px-4 outline-none rounded-[10px] w-[80%] text-secondary font-medium
   }
 
   .label {
-    @apply lg:block hidden w-full
+    @apply lg:block hidden w-[20%]
+  }
+
+  .formGrp {
+    @apply flex items-center lg:justify-between justify-center text-white gap-4 lg:flex-nowrap flex-wrap
+  }
+
+  .tableStyle {
+    @apply border-2 border-red-500 my-10
   }
 }

@@ -16,5 +16,5 @@ const Back = ({ icon, style }: { icon: boolean; style: string }) => {
     </div>
   );
 };
-
+  
 export default Back;

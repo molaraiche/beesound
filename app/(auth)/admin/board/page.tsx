@@ -21,7 +21,7 @@ const Board = () => {
           <span className='lg:flex sm:hidden'>Logout</span>{" "}
         </Link>
       </div>
-      <h1>Products Management</h1>
+      <h1 className='font-bold text-secondary text-4xl my-10'>Products Management</h1>
       <Dashboard />
     </div>
   );
