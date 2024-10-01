@@ -1,15 +1,77 @@
-import React from "react";
+"use client";
+import { productType } from "@/types/types";
+import { addProduct } from "@/utils/server.action";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const FormInputs = () => {
+  const [product, setProduct] = useState<productType>({
+    title: "",
+    price: 0,
+    colors: [],
+    images: [],
+    brand: "",
+    model: "",
+    color: "",
+    factor: "",
+    image: "",
+    technology: "",
+    oldPrice: 0,
+    discount: false,
+    type: "",
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setProduct({
+      ...product,
+      [name]: name === "price" ? Number(value) : value,
+    });
+  };
+
+  const handleImagesChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setProduct({
+      ...product,
+      images: [...(product.images || []), value],
+    });
+  };
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setProduct({
+      ...product,
+      image: value, // Directly set the value for the single image field
+    });
+  };
+  const handleColorsChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setProduct({
+      ...product,
+      colors: [...product.colors, value],
+    });
+  };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await addProduct(product);
+  };
   return (
     <form
+      onSubmit={handleSubmit}
       action=''
       className='flex flex-col justify-center w-full flex-wrap gap-4'>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
           Title:
         </label>
-        <input type='text' className='input' placeholder='Title' name='title' />
+        <input
+          type='text'
+          className='input'
+          placeholder='Title'
+          name='title'
+          onChange={handleChange}
+        />
       </div>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
@@ -21,6 +83,7 @@ const FormInputs = () => {
           placeholder='Price'
           id=''
           name='price'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -32,6 +95,7 @@ const FormInputs = () => {
           className='input  block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
           id='image'
           name=''
+          onChange={handleImageChange}
         />
       </div>
       <div className='formGrp'>
@@ -47,6 +111,7 @@ const FormInputs = () => {
             placeholder='add your hex colors ex: #000'
             id=''
             name='colors'
+            onChange={handleColorsChange}
           />
         </form>
       </div>
@@ -60,6 +125,7 @@ const FormInputs = () => {
           placeholder='Brand'
           id=''
           name='brand'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -72,6 +138,7 @@ const FormInputs = () => {
           placeholder='Model'
           id=''
           name='model'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -85,6 +152,7 @@ const FormInputs = () => {
           placeholder='Factor'
           id=''
           name='factor'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -97,6 +165,7 @@ const FormInputs = () => {
           placeholder='Technology'
           id=''
           name='technology'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -109,6 +178,7 @@ const FormInputs = () => {
           placeholder='Old Price'
           id=''
           name='oldPrice'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -116,11 +186,12 @@ const FormInputs = () => {
           Discount:
         </label>
         <input
-          type='number'
+          type='text'
           className='input'
-          placeholder='Discount'
+          placeholder='Discount is on? "true or false"'
           id=''
           name='discount'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -133,6 +204,7 @@ const FormInputs = () => {
           placeholder='Type'
           id='type'
           name='type'
+          onChange={handleChange}
         />
       </div>
       <div className='formGrp'>
@@ -144,6 +216,9 @@ const FormInputs = () => {
           className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
           id=''
           name='images'
+          multiple
+          accept='image/*'
+          onChange={handleImagesChange}
         />
       </div>
       <div className='w-full flex items-center justify-center gap-5'>

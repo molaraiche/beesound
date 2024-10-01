@@ -1,10 +1,17 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  addDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig";
 import { productType } from "@/types/types";
 
-// Function to get all documents from the "collection" in Firestore
 export async function getAllCollection(): Promise<productType[]> {
-  const querySnapshot = await getDocs(collection(db, "collection")); // Replace with your collection name
+  const querySnapshot = await getDocs(collection(db, "collection"));
   const data: productType[] = [];
 
   querySnapshot.forEach((doc) => {
@@ -14,19 +21,38 @@ export async function getAllCollection(): Promise<productType[]> {
   return data;
 }
 
-// Function to get a single product by ID
 export async function getProductById(id: string): Promise<productType | null> {
   try {
-    const productRef = doc(db, "collection", id); // Replace "collection" with your collection name
+    const productRef = doc(db, "collection", id);
     const productDoc = await getDoc(productRef);
 
     if (productDoc.exists()) {
       return { id: productDoc.id, ...productDoc.data() } as productType;
     } else {
-      return null; // If the document does not exist
+      return null;
     }
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;
   }
 }
+
+export const addProduct = async (productData: productType) => {
+  try {
+    const docRef = await addDoc(collection(db, "products"), productData);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+// this is for the filter
+export const getProductsByType = async (productType: string) => {
+  const q = query(collection(db, "products"), where("type", "==", productType));
+  const querySnapshot = await getDocs(q);
+  const products = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return products;
+};
