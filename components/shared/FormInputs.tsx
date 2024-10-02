@@ -20,6 +20,7 @@ const FormInputs = () => {
     type: "",
   });
 
+  // Handle general input fields
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -30,36 +31,60 @@ const FormInputs = () => {
     });
   };
 
-  const handleImagesChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setProduct({
-      ...product,
-      images: [...(product.images || []), value],
-    });
+  // Handle multiple image uploads locally
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; // Get the first file (main image)
+
+    if (file) {
+      const imagePath = `/assets/${file.name}`; // Construct the path based on the file name
+      setProduct({
+        ...product,
+        image: imagePath, // Store the image path
+      });
+    }
   };
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setProduct({
-      ...product,
-      image: value, // Directly set the value for the single image field
-    });
-  };
+
+  // Handle color input field for multiple colors
   const handleColorsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    const colorArray = value.split(",").map((color) => color.trim());
     setProduct({
       ...product,
-      colors: [...product.colors, value],
+      colors: colorArray, // This will now store an array of hex values
     });
   };
+  const handleImagesChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    if (files) {
+      const imagePaths = Array.from(files).map(
+        (file) => `/assets/${file.name}`
+      ); // Construct paths for each file
+      setProduct({
+        ...product,
+        images: imagePaths, // Store the array of image paths
+      });
+    }
+  };
+
+  // Submit form and add product
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Submit the product data, including the image paths
     await addProduct(product);
+  };
+
+  const handleSingleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setProduct({
+      ...product,
+      color: value, // For single color
+    });
   };
   return (
     <form
       onSubmit={handleSubmit}
-      action=''
       className='flex flex-col justify-center w-full flex-wrap gap-4'>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
@@ -88,32 +113,39 @@ const FormInputs = () => {
       </div>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
+          Color:
+        </label>
+        <input
+          type='text'
+          className='input'
+          placeholder='Color'
+          name='color'
+          onChange={handleSingleColorChange}
+        />
+      </div>
+      <div className='formGrp'>
+        <label htmlFor='' className='label'>
           Main Image:
         </label>
         <input
           type='file'
-          className='input  block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
+          className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
           id='image'
-          name=''
-          onChange={handleImageChange}
+          onChange={handleImageUpload}
         />
       </div>
-      <div className='formGrp'>
-        <form
-          action=''
-          className='flex justify-center w-full items-center gap-4'>
-          <label htmlFor='' className='label'>
-            Colors:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='add your hex colors ex: #000'
-            id=''
-            name='colors'
-            onChange={handleColorsChange}
-          />
-        </form>
+      <div className='formGrp flex justify-center w-full items-center gap-4'>
+        <label htmlFor='' className='label'>
+          Colors:
+        </label>
+        <input
+          type='text'
+          className='input'
+          placeholder='add your hex colors ex: #000, #fff'
+          id='colors'
+          name='colors'
+          onChange={handleColorsChange}
+        />
       </div>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
@@ -143,7 +175,6 @@ const FormInputs = () => {
       </div>
       <div className='formGrp'>
         <label htmlFor='' className='label'>
-          {" "}
           Factor:
         </label>
         <input
@@ -214,7 +245,7 @@ const FormInputs = () => {
         <input
           type='file'
           className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
-          id=''
+          id='images'
           name='images'
           multiple
           accept='image/*'
