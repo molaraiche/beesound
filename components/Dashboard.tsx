@@ -1,4 +1,4 @@
-import FormInputs from "./shared/FormInputs";
+import AddFormInputs from "./shared/AddFormInputs";
 import Table from "./Table";
 import {
   Modal,
@@ -9,7 +9,7 @@ import {
 
 const Dashboard = () => {
   return (
-    <section>
+    <section className="w-full">
       <Modal>
         <div className='flex justify-end'>
           <ModalTrigger className='bg-primary font-medium'>
@@ -18,7 +18,7 @@ const Dashboard = () => {
         </div>
         <ModalBody className=' w-[90%] mx-[10%] rounded-lg'>
           <ModalContent className='bg-secondary'>
-            <FormInputs />
+            <AddFormInputs />
           </ModalContent>
         </ModalBody>
       </Modal>
