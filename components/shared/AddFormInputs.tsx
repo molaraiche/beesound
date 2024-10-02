@@ -82,192 +82,193 @@ const FormInputs = () => {
       <div className='flex items-center justify-center my-4'>
         <h1 className='text-4xl text-white font-semibold'>Add New Product</h1>
       </div>
-      <div className='formGrp'>
-        <label htmlFor='' className='label'>
-          Title:
-        </label>
-        <input
-          type='text'
-          className='input'
-          placeholder='Title'
-          name='title'
-          onChange={handleChange}
-        />
-      </div>
+      <div className='flex items-center justify-between gap-4 flex-wrap'>
+        <div className='flex items-center justify-between flex-col gap-4 w-full'>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Title:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Title'
+              name='title'
+              onChange={handleChange}
+            />
+          </div>
 
-      <div className='formGrp'>
-        <label htmlFor='' className='label'>
-          Price:
-        </label>
-        <input
-          type='number'
-          className='input'
-          placeholder='Price'
-          id=''
-          name='price'
-          onChange={handleChange}
-        />
-      </div>
-      <div className='formGrp'>
-        <label htmlFor='' className='label'>
-          Main Image:
-        </label>
-        <input
-          type='file'
-          className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
-          id='image'
-          onChange={handleImageUpload}
-        />
-      </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Price:
+            </label>
+            <input
+              type='number'
+              className='input'
+              placeholder='Price'
+              id=''
+              name='price'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Main Image:
+            </label>
+            <input
+              type='file'
+              className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
+              id='image'
+              onChange={handleImageUpload}
+            />
+          </div>
 
-      <div className='flex justify-between gap-4'>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Brand:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Brand'
-            id=''
-            name='brand'
-            onChange={handleChange}
-          />
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Brand:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Brand'
+              id=''
+              name='brand'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Model:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Model'
+              id=''
+              name='model'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Factor:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Factor'
+              id=''
+              name='factor'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Technology:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Technology'
+              id=''
+              name='technology'
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Model:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Model'
-            id=''
-            name='model'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Factor:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Factor'
-            id=''
-            name='factor'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Technology:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Technology'
-            id=''
-            name='technology'
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div className='flex justify-between gap-4'>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Discount:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='true or false'
-            id=''
-            name='discount'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Old Price:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Old Price'
-            id=''
-            name='oldPrice'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Price:
-          </label>
-          <input
-            type='number'
-            className='input'
-            placeholder='Price'
-            id=''
-            name='price'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Type
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Type'
-            id='type'
-            name='type'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Color:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='Color'
-            name='color'
-            onChange={handleSingleColorChange}
-          />
-        </div>
-      </div>
 
-      <div className='flex justify-between gap-4'>
-        <div className='formGrp w-full'>
-          <label htmlFor='' className='label'>
-            Other Images:
-          </label>
-          <input
-            type='file'
-            className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
-            id='images'
-            name='images'
-            multiple
-            accept='image/*'
-            onChange={handleImagesChange}
-          />
-        </div>
-        <div className='formGrp flex justify-center w-full items-center gap-4'>
-          <label htmlFor='' className='label'>
-            Colors:
-          </label>
-          <input
-            type='text'
-            className='input'
-            placeholder='add your hex colors ex: #000, #fff'
-            id='colors'
-            name='colors'
-            onChange={handleColorsChange}
-          />
+        <div className='flex items-center justify-between flex-col gap-4 w-full'>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Discount:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='true or false'
+              id=''
+              name='discount'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Old Price:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Old Price'
+              id=''
+              name='oldPrice'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Price:
+            </label>
+            <input
+              type='number'
+              className='input'
+              placeholder='Price'
+              id=''
+              name='price'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Type
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Type'
+              id='type'
+              name='type'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='formGrp'>
+            <label htmlFor='' className='label'>
+              Color:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='Color'
+              name='color'
+              onChange={handleSingleColorChange}
+            />
+          </div>
+
+          <div className='formGrp w-full'>
+            <label htmlFor='' className='label'>
+              Other Images:
+            </label>
+            <input
+              type='file'
+              className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
+              id='images'
+              name='images'
+              multiple
+              accept='image/*'
+              onChange={handleImagesChange}
+            />
+          </div>
+          <div className='formGrp flex justify-center w-full items-center gap-4'>
+            <label htmlFor='' className='label'>
+              Colors:
+            </label>
+            <input
+              type='text'
+              className='input'
+              placeholder='add your hex colors ex: #000, #fff'
+              id='colors'
+              name='colors'
+              onChange={handleColorsChange}
+            />
+          </div>
         </div>
       </div>
       <div className='w-full flex items-center justify-center gap-5'>
