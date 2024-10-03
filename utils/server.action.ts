@@ -61,14 +61,14 @@ export const updateProduct = async (id: string, productData: productType) => {
 };
 export const deleteProduct = async (productId: string) => {
   try {
-    const productRef = doc(db, "products", productId); // Reference to the product document
-    await deleteDoc(productRef); // Delete the product
+    const productRef = doc(db, "products", productId);
+    await deleteDoc(productRef); 
     console.log(`Product with ID ${productId} deleted successfully`);
   } catch (error) {
     console.error("Error deleting product:", error);
   }
 };
-// this is for the filter
+
 export const getProductsByType = async (productType: string) => {
   const q = query(collection(db, "products"), where("type", "==", productType));
   const querySnapshot = await getDocs(q);

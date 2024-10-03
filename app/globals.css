@@ -22,4 +22,8 @@
   .tableStyle {
     @apply border-2 border-red-500 my-10;
   }
-}
+
+  .error-text {
+    @apply text-red-500 font-semibold mt-1
+  }
+} 
