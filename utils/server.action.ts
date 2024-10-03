@@ -4,14 +4,16 @@ import {
   getDoc,
   getDocs,
   addDoc,
+  updateDoc,
   query,
   where,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig";
 import { productType } from "@/types/types";
 
 export async function getAllCollection(): Promise<productType[]> {
-  const querySnapshot = await getDocs(collection(db, "collection"));
+  const querySnapshot = await getDocs(collection(db, "products"));
   const data: productType[] = [];
 
   querySnapshot.forEach((doc) => {
@@ -23,7 +25,7 @@ export async function getAllCollection(): Promise<productType[]> {
 
 export async function getProductById(id: string): Promise<productType | null> {
   try {
-    const productRef = doc(db, "collection", id);
+    const productRef = doc(db, "products", id);
     const productDoc = await getDoc(productRef);
 
     if (productDoc.exists()) {
@@ -46,6 +48,26 @@ export const addProduct = async (productData: productType) => {
   }
 };
 
+export const updateProduct = async (id: string, productData: productType) => {
+  try {
+    const productRef = doc(db, "products", id); // Reference to the specific document
+    await updateDoc(productRef, {
+      ...productData, // Updating with new data
+    });
+    console.log("Product updated successfully with ID:", id);
+  } catch (error) {
+    console.error("Error updating product:", error);
+  }
+};
+export const deleteProduct = async (productId: string) => {
+  try {
+    const productRef = doc(db, "products", productId); // Reference to the product document
+    await deleteDoc(productRef); // Delete the product
+    console.log(`Product with ID ${productId} deleted successfully`);
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+};
 // this is for the filter
 export const getProductsByType = async (productType: string) => {
   const q = query(collection(db, "products"), where("type", "==", productType));

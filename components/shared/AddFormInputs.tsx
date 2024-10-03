@@ -2,8 +2,9 @@
 import { productType } from "@/types/types";
 import { addProduct } from "@/utils/server.action";
 import { ChangeEvent, FormEvent, useState } from "react";
-
+import { useRouter } from "next/navigation";
 const AddFormInputs = () => {
+  const route = useRouter();
   const [product, setProduct] = useState<productType>({
     title: "",
     price: 0,
@@ -63,9 +64,10 @@ const AddFormInputs = () => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await addProduct(product);
+    addProduct(product);
+    route.push("/admin/board");
   };
 
   const handleSingleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
