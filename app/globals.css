@@ -4,15 +4,19 @@
 
 @layer utilities {
   .input {
-    @apply py-2 px-4 outline-none rounded-[10px] text-secondary font-medium w-[400px];
+    @apply py-2 px-4 outline-none rounded-[10px] text-secondary font-medium max-w-[80%] lg:w-[600px] w-[300px]
   }
 
   .label {
-    @apply lg:block hidden w-[200px];
+    @apply max-w-[20%] lg:w-[200px] w-[80px] text-white lg:block md:block sm:hidden xsm:hidden
   }
 
   .formGrp {
-    @apply flex items-center lg:justify-between justify-center text-white gap-4 lg:flex-nowrap flex-wrap;
+    @apply flex items-center justify-center gap-5 my-5
+  }
+
+  .formHolder {
+    @apply flex items-center justify-between gap-5 lg:flex-row flex-col
   }
 
   .tableStyle {
