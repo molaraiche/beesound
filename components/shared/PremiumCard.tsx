@@ -7,14 +7,7 @@ interface premiumCardTypee {
   className?: string;
   bg: string;
 }
-const PremiumCard = ({
-  title,
-  imgURL,
-  width,
-  height,
-  className,
-  bg,
-}: premiumCardTypee) => {
+const PremiumCard = ({ title, imgURL, className, bg }: premiumCardTypee) => {
   return (
     <div
       style={{
@@ -31,8 +24,8 @@ const PremiumCard = ({
         <Image
           src={imgURL}
           alt={title}
-          width={width}
-          height={height}
+          width={400}
+          height={200}
           className={className}
         />
       </div>

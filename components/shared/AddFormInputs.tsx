@@ -31,7 +31,12 @@ const AddFormInputs = () => {
     const { name, value } = e.target;
     setProduct({
       ...product,
-      [name]: name === "price" ? Number(value) : value,
+      [name]:
+        name === "price" || name === "oldPrice"
+          ? Number(value)
+          : name === "discount"
+          ? value === "true"
+          : value,
     });
   };
 
@@ -131,6 +136,7 @@ const AddFormInputs = () => {
               type='number'
               className='input'
               placeholder='Price'
+              step='0.01'
               id=''
               name='price'
               onChange={handleChange}
@@ -265,9 +271,10 @@ const AddFormInputs = () => {
             Old Price:
           </label>
           <div className=''>
-            <input  
+            <input
               type='number'
               className='input'
+              step='0.01'
               placeholder='Old Price'
               id=''
               name='oldPrice'

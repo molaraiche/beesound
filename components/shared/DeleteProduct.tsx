@@ -3,7 +3,6 @@ import { productType } from "@/types/types";
 import { deleteProduct, getAllCollection } from "@/utils/server.action";
 import React, { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
-import { ToastContainer, toast } from "react-toastify";
 
 interface DeleteProductProps {
   id: string;
@@ -17,7 +16,6 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
       try {
         const productsData = await getAllCollection();
         setProducts(productsData);
-        toast("Product has been Deleted !");
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -46,7 +44,6 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
         <MdDelete />
         <span>Delete</span>
       </button>
-      <ToastContainer />
     </>
   );
 };

@@ -6,8 +6,6 @@ const ProductCard = ({
   title,
   price,
   colors,
-  width,
-  height,
   oldPrice,
   discount,
   classeName,
@@ -27,8 +25,8 @@ const ProductCard = ({
           <Image
             src={image}
             alt={title}
-            width={width}
-            height={height}
+            width={250}
+            height={250}
             className={classeName}
           />
         </div>
