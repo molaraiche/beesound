@@ -13,7 +13,7 @@
     "@types/stripe": "^8.0.416",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "firebase": "^10.13.2",
+    "firebase": "^10.14.0",
     "formidable": "^3.5.1",
     "framer-motion": "^11.9.0",
     "lucide-react": "^0.446.0",

@@ -1,4 +1,3 @@
-// app/api/checkout/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -28,7 +27,8 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ id: session.id });
-  } catch (error: unknown) {
+  } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
