@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 
-const SignUp = () => {
+const SignIn = () => {
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <div className='flex flex-col items-center justify-center h-screen'>
@@ -82,4 +82,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
