@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { setCookie } from "cookies-next";
-import { auth, db } from "@/firebase/firebaseConfig"; // Firestore and Firebase imports
+import { auth, db } from "@/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/schema/productSchema";
 import { formType } from "@/types/types";
-import { doc, getDoc } from "firebase/firestore"; // Firestore method to get user data
+import { doc, getDoc } from "firebase/firestore"; 
 
 const Admin = () => {
   const [form, setForm] = useState<formType>({ email: "", password: "" });
