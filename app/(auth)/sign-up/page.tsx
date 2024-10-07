@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <div className='flex flex-col items-center justify-center h-screen'>
@@ -19,7 +19,7 @@ const SignIn = () => {
         </div>
         <div className='flex h-[90vh] items-center justify-between flex-col'>
           <div className='h-[20vh] flex items-center justify-center'>
-            <h1 className='text-5xl font-semibold text-secondary'>Sign in</h1>
+            <h1 className='text-5xl font-semibold text-secondary'>Sign up</h1>
           </div>
           <div className='w-full flex flex-col items-center justify-center h-[60vh]'>
             <form className='bg-secondary p-20 text-white rounded-xl flex flex-col gap-5'>
@@ -45,30 +45,30 @@ const SignIn = () => {
               </div>
               <div className='flex justify-end'>
                 <p>
-                  Don&apos;t have an account?
+                  Do you already have an account?
                   <Link
-                    href='/sign-up'
+                    href='/sign-in'
                     className=' text-primary font-bold mx-2'>
-                    Sign up
-                  </Link>
+                    Login
+                  </Link>{" "}
                 </p>
               </div>
             </form>
             <div className='flex gap-10 my-10'>
               <button className='py-2 px-10 border-secondary border-2 text-secondary font-medium rounded-md flex items-center gap-2 hover:bg-dark-white hover:text-primary'>
                 <FaGoogle />
-                Sign in with Google
+                Sign up with Google
               </button>
               <button className='py-2 px-10 border-secondary border-2 text-secondary font-medium rounded-md hover:bg-primary hover:text-white hover:border-primary'>
-                Sign in
+                Sign Up
               </button>
             </div>
           </div>
         </div>
-        <div className='h-[10vh] flex justify-end w-full px-10'>
+        <div className='h-[10vh] flex justify-end w-full '>
           <Link
             href='/admin'
-            className='border-2 border-primary hover:bg-primary hover:text-white text-primary h-fit py-2 px-10 rounded-full font-medium'>
+            className='border-2 border-primary hover:bg-primary hover:text-white text-primary h-fit py-2 px-10 rounded-lg font-medium'>
             Admin
           </Link>
         </div>
@@ -77,4 +77,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

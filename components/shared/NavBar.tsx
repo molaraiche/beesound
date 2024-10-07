@@ -91,10 +91,10 @@ const NavBar = () => {
           </Link>
         </div>
         <Link
-          href='/sign-in'
+          href='/sign-up'
           onClick={closeHandler}
           className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary '>
-          Sign in
+          Sign Up
         </Link>
       </div>
       <div className='lg:hidden'>
