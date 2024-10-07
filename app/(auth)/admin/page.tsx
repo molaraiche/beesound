@@ -4,19 +4,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { setCookie } from "cookies-next";
-import { auth } from "@/firebase/firebaseConfig";
+import { auth, db } from "@/firebase/firebaseConfig"; // Firestore and Firebase imports
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/schema/productSchema";
-interface adminType {
-  email: string;
-  password: string;
-}
+import { formType } from "@/types/types";
+import { doc, getDoc } from "firebase/firestore"; // Firestore method to get user data
+
 const Admin = () => {
-  const [form, setForm] = useState<adminType>({ email: "", password: "" });
+  const [form, setForm] = useState<formType>({ email: "", password: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const router = useRouter();
-  const loginHandler = (e: React.FormEvent) => {
+
+  const loginHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = formSchema.safeParse(form);
     if (!result.success) {
@@ -34,25 +34,53 @@ const Admin = () => {
       }, 30000);
       return;
     }
-    signInWithEmailAndPassword(auth, form.email, form.password)
-      .then((userCredentiel) => {
-        console.log(userCredentiel);
-        const user = userCredentiel.user;
-        if (!user) {
-          alert("please check the credentiel");
-        } else {
-          user.getIdToken().then((token) => {
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+      const user = userCredential.user;
+
+      if (user) {
+        const token = await user.getIdToken();
+        const uid = user.uid;
+
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          const role = userData?.role || "user";
+
+          if (role === "admin") {
             setCookie("token", token, { maxAge: 3600, path: "/" });
+            setCookie("role", role, { maxAge: 3600, path: "/" });
+
             router.push("/admin/board");
-          });
+          } else {
+            alert("Unauthorized access. You are not an admin.");
+            router.push("/sign-in");
+          }
+        } else {
+          console.log("No user data found");
         }
-      })
-      .catch((err) => console.log(err.message));
+      } else {
+        console.log("User authentication failed.");
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error("Error during admin sign-in:", err.message);
+      } else {
+        console.error("An unknown error occurred during admin sign-in.");
+      }
+    }
   };
+
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     const { name, value } = e.target;
-    setForm((prev: adminType) => ({ ...prev, [name]: value }));
+    setForm((prev: formType) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -78,7 +106,7 @@ const Admin = () => {
               onSubmit={loginHandler}
               className='bg-secondary p-20 text-white rounded-xl flex flex-col gap-5'>
               <div className='flex items-center justify-between gap-5 w-full'>
-                <label htmlFor='' className='w-[100px]'>
+                <label htmlFor='email' className='w-[100px]'>
                   Email:
                 </label>
                 <div className=''>
@@ -93,7 +121,7 @@ const Admin = () => {
                 </div>
               </div>
               <div className='flex items-center gap-5 w-full'>
-                <label htmlFor='' className='w-[100px]'>
+                <label htmlFor='password' className='w-[100px]'>
                   Password:
                 </label>
                 <div className=''>
@@ -112,7 +140,7 @@ const Admin = () => {
               <div className='flex items-center justify-center gap-10 my-10'>
                 <button
                   type='submit'
-                  className='py-2 px-10  bg-primary  text-white font-medium rounded-md '>
+                  className='py-2 px-10  bg-primary  text-white font-medium rounded-md'>
                   Sign in
                 </button>
               </div>

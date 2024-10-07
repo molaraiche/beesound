@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
 import Link from "next/link";
 import { TbShoppingBag } from "react-icons/tb";
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
+import Logout from "./LogoutBtn";
 
 interface menuType {
   menu: boolean;
@@ -12,17 +14,37 @@ interface menuType {
 interface searchType {
   searchToggle: boolean;
 }
+
 const NavBar = () => {
   const [menu, setMenu] = useState<menuType>({ menu: true });
   const [searchToggle, setSearchToggle] = useState<searchType>({
     searchToggle: false,
   });
+
+  const [logOutDisplay, setLogOutDisplay] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = getCookie("token");
+    const displayName = getCookie("displayName") as string | null;
+    const email = getCookie("email") as string | null;
+
+    if (token) {
+      setIsLoggedIn(true);
+      setUserName(displayName || email || "Guest");
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   const menuHandler = () => setMenu({ menu: !menu.menu });
   const closeHandler = () => setMenu({ menu: true });
   const searchHandler = () => {
     setMenu({ menu: true });
     setSearchToggle({ searchToggle: !searchToggle.searchToggle });
   };
+
   return (
     <header className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 flex items-center h-[10vh] justify-between'>
       <Link href='/' className='flex items-center gap-1' onClick={closeHandler}>
@@ -90,12 +112,28 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        <Link
-          href='/sign-up'
-          onClick={closeHandler}
-          className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary '>
-          Sign Up
-        </Link>
+        {isLoggedIn ? (
+          <div className='relative'>
+            <span
+              className='font-semibold text-primary cursor-pointer'
+              onClick={() => setLogOutDisplay(!logOutDisplay)}>
+              Welcome, {userName || "Guest"}
+            </span>
+            <div
+              className={`absolute bg-secondary   items-center justify-center right-0 left-0 rounded-lg ${
+                logOutDisplay ? "flex" : "hidden"
+              } `}>
+              <Logout  className='text-white' />
+            </div>
+          </div>
+        ) : (
+          <Link
+            href='/sign-up'
+            onClick={closeHandler}
+            className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
+            Sign Up
+          </Link>
+        )}
       </div>
       <div className='lg:hidden'>
         {menu.menu ? (

@@ -25,3 +25,7 @@ export type categoriesType = {
   bestSelling: productType[];
   blackFriday: productType[];
 };
+export interface formType {
+  email: string;
+  password: string;
+}
