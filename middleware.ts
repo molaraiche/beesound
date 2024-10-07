@@ -1,0 +1,17 @@
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get("token")?.value;
+
+  if (token && !request.nextUrl.pathname.startsWith("/admin/board")) {
+    return NextResponse.redirect(new URL("/admin/board", request.url));
+  }
+  if (!token && !request.nextUrl.pathname.startsWith("/sign-up")) {
+    return NextResponse.redirect(new URL("/sign-up", request.url));
+  }
+}
+
+export const config = {
+  matcher: ["/admin/board"],
+};
