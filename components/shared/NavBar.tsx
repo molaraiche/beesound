@@ -7,7 +7,7 @@ import { TbShoppingBag } from "react-icons/tb";
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
 import Logout from "./LogoutBtn";
-
+const role = getCookie("role") as string | null;
 interface menuType {
   menu: boolean;
 }
@@ -149,18 +149,16 @@ const NavBar = () => {
               className={`absolute bg-secondary   items-center justify-center right-0 left-0 rounded-lg ${
                 logOutDisplay ? "flex" : "hidden"
               } `}>
-              <Logout className='text-white' />
+              <Logout className='text-white' role={`${role}`} />
             </div>
           </div>
         ) : (
-          isAdmin && (
-            <Link
-              href='/sign-up'
-              onClick={closeHandler}
-              className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
-              Sign Up
-            </Link>
-          )
+          <Link
+            href='/sign-up'
+            onClick={closeHandler}
+            className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
+            Sign Up
+          </Link>
         )}
       </div>
       <div className='lg:hidden'>

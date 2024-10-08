@@ -3,6 +3,8 @@ import Dashboard from "@/components/Dashboard";
 import Logout from "@/components/shared/LogoutBtn";
 import Image from "next/image";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
+const role = getCookie("role") as string | null;
 
 const BoardClient = ({ username }: { username: string }) => {
   return (
@@ -17,7 +19,7 @@ const BoardClient = ({ username }: { username: string }) => {
           />
           <span className='text-[23px]'>BeeSound</span>
         </Link>
-        <Logout />
+        <Logout role={`${role}`} />
       </div>
       <h1 className='text-2xl'>
         Welcome to the Admin Dashboard
