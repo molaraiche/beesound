@@ -40,7 +40,7 @@ export const productSchema = z.object({
     .positive({ message: "Old Price must be a positive number" })
     .default(0),
   discount: z.boolean().optional(),
-  type: z.enum(["Collection", "Arrivals", "Gamers"], {
+  type: z.enum(["Collection", "Arrivals", "Gamers", "Discount"], {
     message: "Invalid product type",
   }),
 });

@@ -1,10 +1,12 @@
-import { products } from "@/constants/products";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 import ProductCard from "./shared/ProductCard";
 import { productType } from "@/types/types";
+import { getArrivalsProducts } from "@/utils/server.action";
 
-const NewArrivals = () => {
+const NewArrivals = async () => {
+  const products: productType[] = await getArrivalsProducts();
+
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <div className='my-10'>
@@ -22,12 +24,12 @@ const NewArrivals = () => {
           </div>
         </div>
         <div className='flex items-center lg:justify-between justify-center mt-5 gap-[22px] lg:flex-nowrap flex-wrap'>
-          {products.newArrivals.map((product: productType) => (
+          {products.map((product: productType) => (
             <ProductCard
               key={product.id}
               price={product.price}
               title={product.title}
-              imgURL={product.image}
+              image={product.image}
               colors={product.colors}
               width={product.width}
               height={product.height}

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import ProductCard from "@/components/shared/ProductCard";
 import { productType } from "@/types/types";
-import { getAllCollection } from "@/utils/server.action";
+import { getCollectionProducts } from "@/utils/server.action";
 
 const Collection = async () => {
-  const products: productType[] = await getAllCollection();
+  const products: productType[] = await getCollectionProducts();
 
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 flex flex-wrap items-center justify-center my-10'>
