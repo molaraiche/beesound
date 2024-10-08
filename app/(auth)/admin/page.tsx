@@ -8,7 +8,7 @@ import { auth, db } from "@/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/schema/productSchema";
 import { formType } from "@/types/types";
-import { doc, getDoc } from "firebase/firestore"; 
+import { doc, getDoc } from "firebase/firestore";
 
 const Admin = () => {
   const [form, setForm] = useState<formType>({ email: "", password: "" });
@@ -53,10 +53,13 @@ const Admin = () => {
         if (docSnap.exists()) {
           const userData = docSnap.data();
           const role = userData?.role || "user";
+          const username = userData?.username || "Unknown";
 
           if (role === "admin") {
             setCookie("token", token, { maxAge: 3600, path: "/" });
             setCookie("role", role, { maxAge: 3600, path: "/" });
+            setCookie("username", username, { maxAge: 3600, path: "/" });
+            setCookie("uid", uid, { maxAge: 3600, path: "/" });
 
             router.push("/admin/board");
           } else {
