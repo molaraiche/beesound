@@ -4,6 +4,9 @@ export const productSchema = z.object({
   title: z.string().min(3, {
     message: "Title is required and must be at least 3 characters long",
   }),
+  description: z.string().min(30, {
+    message: "Description is required and must be at least 30 characters long",
+  }),
   price: z
     .number()
     .positive({ message: "Price must be a positive number" })
@@ -19,22 +22,7 @@ export const productSchema = z.object({
     .array(z.string().min(1, { message: "Image path is required" }))
     .optional()
     .default([]),
-  brand: z.string().min(3, {
-    message: "Brand is required and must be at least 3 characters long",
-  }),
-  model: z.string().min(3, {
-    message: "Model is required and must be at least 3 characters long",
-  }),
-  color: z.string().min(3, {
-    message: "Color is required and must be at least 3 characters long",
-  }),
-  factor: z.string().min(3, {
-    message: "Factor is required and must be at least 3 characters long",
-  }),
   image: z.string().min(1, { message: "Main image path is required" }),
-  technology: z.string().min(3, {
-    message: "Technology is required and must be at least 3 characters long",
-  }),
   oldPrice: z
     .number()
     .positive({ message: "Old Price must be a positive number" })

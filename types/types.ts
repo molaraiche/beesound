@@ -6,11 +6,7 @@ export type productType = {
   colors: string[];
   width?: number;
   height?: number;
-  brand?: string;
-  model?: string;
-  color?: string;
-  factor?: string;
-  technology?: string;
+  description: string;
   images?: string[];
   oldPrice?: number;
   classeName?: string;

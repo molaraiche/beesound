@@ -15,12 +15,8 @@ const AddFormInputs = () => {
     price: 0,
     colors: [],
     images: [],
-    brand: "",
-    model: "",
-    color: "",
-    factor: "",
+    description: "",
     image: "",
-    technology: "",
     oldPrice: 0,
     discount: false,
     type: "",
@@ -82,7 +78,7 @@ const AddFormInputs = () => {
     if (!result.success) {
       const formattedErrors = result.error.errors.reduce(
         (acc: Record<string, string>, curr) => {
-          const key = curr.path[0] as string; // Ensure the key is treated as a string
+          const key = curr.path[0] as string;
           acc[key] = curr.message;
           return acc;
         },
@@ -99,19 +95,11 @@ const AddFormInputs = () => {
     route.push("/admin/board");
   };
 
-  const handleSingleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setProduct({
-      ...product,
-      color: value,
-    });
-  };
-
   return (
     <form
       onSubmit={handleSubmit}
       className='flex flex-col items-center justify-center h-[90vh]'>
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
           <label htmlFor='' className='label'>
             Title:
@@ -145,7 +133,8 @@ const AddFormInputs = () => {
           </div>
         </div>
       </div>
-      <div className='formHolder'>
+
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
           <label htmlFor='' className='label'>
             Main Image:
@@ -178,78 +167,8 @@ const AddFormInputs = () => {
           </div>
         </div>
       </div>
-      <div className='formHolder'>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Brand:
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Brand'
-              id=''
-              name='brand'
-              onChange={handleChange}
-            />
-            {errors.brand && <p className='error-text'>{errors.brand}</p>}
-          </div>
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Model:
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Model'
-              id=''
-              name='model'
-              onChange={handleChange}
-            />
-            {errors.model && <p className='error-text'>{errors.model}</p>}
-          </div>
-        </div>
-      </div>
-      <div className='formHolder'>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Factor:
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Factor'
-              id=''
-              name='factor'
-              onChange={handleChange}
-            />
-            {errors.factor && <p className='error-text'>{errors.factor}</p>}
-          </div>
-        </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Technology:
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Technology'
-              id=''
-              name='technology'
-              onChange={handleChange}
-            />
-            {errors.technology && (
-              <p className='error-text'>{errors.technology}</p>
-            )}
-          </div>
-        </div>
-      </div>
 
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
           <label htmlFor='' className='label'>
             Discount:
@@ -284,41 +203,24 @@ const AddFormInputs = () => {
           </div>
         </div>
       </div>
-
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
           <label htmlFor='' className='label'>
-            Type
+            Description:
           </label>
           <div className=''>
-            <input
-              type='text'
+            <textarea
+              cols={0}
+              rows={0}
               className='input'
-              placeholder='Type'
-              id='type'
-              name='type'
-              onChange={handleChange}
+              placeholder='Product Description'
+              name='description'
             />
-            {errors.type && <p className='error-text'>{errors.type}</p>}
+            {errors.description && (
+              <p className='error-text'>{errors.description}</p>
+            )}
           </div>
         </div>
-        <div className='formGrp'>
-          <label htmlFor='' className='label'>
-            Color:
-          </label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Color'
-              name='color'
-              onChange={handleSingleColorChange}
-            />
-            {errors.color && <p className='error-text'>{errors.color}</p>}
-          </div>
-        </div>
-      </div>
-      <div className='formHolder'>
         <div className='formGrp'>
           <label htmlFor='' className='label'>
             Colors:
@@ -339,7 +241,7 @@ const AddFormInputs = () => {
       <div className='w-full flex items-center justify-center h-[10vh] gap-4'>
         <Link
           href='/admin/board'
-          className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-medium'>
+          className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-semibold'>
           Cancel
         </Link>
         <button
