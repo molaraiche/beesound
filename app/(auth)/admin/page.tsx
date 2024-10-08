@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { setCookie } from "cookies-next";
 import { auth, db } from "@/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
-import { formSchema } from "@/schema/productSchema";
+import { formSchema } from "@/schema/formShcema";
 import { formType } from "@/types/types";
 import { doc, getDoc } from "firebase/firestore";
 

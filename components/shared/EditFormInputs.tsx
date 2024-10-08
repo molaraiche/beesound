@@ -15,12 +15,8 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
     price: 0,
     colors: [],
     images: [],
-    brand: "",
-    model: "",
-    color: "",
-    factor: "",
+    description: "",
     image: "",
-    technology: "",
     oldPrice: 0,
     discount: false,
     type: "",
@@ -31,7 +27,6 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
     if (productId) {
       const fetchProduct = async () => {
         const productData = await getProductById(productId);
-
         if (productData) {
           setProduct(productData);
         } else {
@@ -43,12 +38,17 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
   }, [productId]);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setProduct({
       ...product,
-      [name]: name === "price" || name === "oldPrice" ? Number(value) : value,
+      [name]:
+        name === "price" || name === "oldPrice"
+          ? Number(value)
+          : name === "discount"
+          ? value === "true"
+          : value,
     });
   };
 
@@ -85,17 +85,8 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
     }
   };
 
-  const handleSingleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setProduct({
-      ...product,
-      color: value,
-    });
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const result = productSchema.safeParse(product);
 
     if (!result.success) {
@@ -123,11 +114,13 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='flex flex-col items-center justify-center min-h-[90vh] h-auto'>
-      <div className='formHolder'>
+      className='flex flex-col items-center justify-center h-[90vh]'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
-          <label className='label'>Title:</label>
-          <div className=''>
+          <label htmlFor='title' className='label'>
+            Title:
+          </label>
+          <div>
             <input
               type='text'
               className='input'
@@ -140,13 +133,15 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           </div>
         </div>
         <div className='formGrp'>
-          <label className='label'>Price:</label>
-
-          <div className=''>
+          <label htmlFor='price' className='label'>
+            Price:
+          </label>
+          <div>
             <input
               type='number'
               className='input'
               placeholder='Price'
+              step='0.01'
               name='price'
               value={product.price}
               onChange={handleChange}
@@ -156,10 +151,12 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
-          <label className='label'>Main Image:</label>
-          <div className=''>
+          <label htmlFor='image' className='label'>
+            Main Image:
+          </label>
+          <div>
             <input
               type='file'
               className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
@@ -170,8 +167,10 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           </div>
         </div>
         <div className='formGrp'>
-          <label className='label'>Other Images:</label>
-          <div className=''>
+          <label htmlFor='images' className='label'>
+            Other Images:
+          </label>
+          <div>
             <input
               type='file'
               className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
@@ -186,112 +185,33 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
-          <label className='label'>Brand:</label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Brand'
-              name='brand'
-              value={product.brand}
-              onChange={handleChange}
-            />
-            {errors.brand && <p className='error-text'>{errors.brand}</p>}
-          </div>
-        </div>
-        <div className='formGrp'>
-          <label className='label'>Model:</label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Model'
-              name='model'
-              value={product.model}
-              onChange={handleChange}
-            />
-            {errors.model && <p className='error-text'>{errors.model}</p>}
-          </div>
-        </div>
-      </div>
-
-      <div className='formHolder'>
-        <div className='formGrp'>
-          <label className='label'>Factor:</label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Factor'
-              name='factor'
-              value={product.factor}
-              onChange={handleChange}
-            />
-
-            {errors.factor && <p className='error-text'>{errors.factor}</p>}
-          </div>
-        </div>
-        <div className='formGrp'>
-          <label className='label'>Technology:</label>
-
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Technology'
-              name='technology'
-              value={product.technology}
-              onChange={handleChange}
-            />
-            {errors.technology && (
-              <p className='error-text'>{errors.technology}</p>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className='formHolder'>
-        <div className='formGrp'>
-          <label className='label'>Discount:</label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='true or false'
+          <label htmlFor='discount' className='label'>
+            Discount:
+          </label>
+          <div>
+            <select
               name='discount'
-              value={product.discount ? "true" : "false"}
-              onChange={(e) => {
-                setProduct({
-                  ...product,
-                  discount: e.target.value === "true",
-                });
-              }}
-            />
-            {errors.discount && <p className='error-text'>{errors.discount}</p>}{" "}
-            <input
-              type='text'
+              id='discount'
               className='input'
-              placeholder='true or false'
-              name='discount'
               value={product.discount ? "true" : "false"}
-              onChange={(e) => {
-                setProduct({
-                  ...product,
-                  discount: e.target.value === "true",
-                });
-              }}
-            />
+              onChange={handleChange}>
+              <option value='true'>True</option>
+              <option value='false'>False</option>
+            </select>
             {errors.discount && <p className='error-text'>{errors.discount}</p>}
           </div>
         </div>
         <div className='formGrp'>
-          <label className='label'>Old Price:</label>
-          <div className=''>
+          <label htmlFor='oldPrice' className='label'>
+            Old Price:
+          </label>
+          <div>
             <input
               type='number'
               className='input'
+              step='0.01'
               placeholder='Old Price'
               name='oldPrice'
               value={product.oldPrice}
@@ -302,47 +222,37 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='formHolder'>
+      <div className='flex items-center justify-between'>
         <div className='formGrp'>
-          <label className='label'>Type:</label>
-          <div className=''>
-            <input
-              type='text'
+          <label htmlFor='description' className='label'>
+            Description:
+          </label>
+          <div>
+            <textarea
+              cols={30}
+              rows={3}
               className='input'
-              placeholder='Type'
-              name='type'
-              value={product.type}
+              placeholder='Product Description'
+              name='description'
+              value={product.description}
               onChange={handleChange}
             />
-            {errors.type && <p className='error-text'>{errors.type}</p>}
+            {errors.description && (
+              <p className='error-text'>{errors.description}</p>
+            )}
           </div>
         </div>
         <div className='formGrp'>
-          <label className='label'>Single Color:</label>
-          <div className=''>
+          <label htmlFor='colors' className='label'>
+            Colors:
+          </label>
+          <div>
             <input
               type='text'
               className='input'
-              placeholder='Color'
-              name='color'
-              value={product.color}
-              onChange={handleSingleColorChange} // Handle single color change
-            />
-            {errors.color && <p className='error-text'>{errors.color}</p>}
-          </div>
-        </div>
-      </div>
-
-      <div className='formHolder'>
-        <div className='formGrp'>
-          <label className='label'>Colors (multiple):</label>
-          <div className=''>
-            <input
-              type='text'
-              className='input'
-              placeholder='Add your hex colors (e.g. #000, #fff)'
+              placeholder='add your hex colors ex: #000, #fff'
               name='colors'
-              value={product.colors.join(", ")} // Pre-fill with multiple colors
+              value={product.colors.join(", ")}
               onChange={handleColorsChange}
             />
             {errors.colors && <p className='error-text'>{errors.colors}</p>}
@@ -350,10 +260,29 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
+      <div className='flex my-10'>
+        <label htmlFor='type' className='label'>
+          Type
+        </label>
+        <select
+          name='type'
+          className='input'
+          value={product.type}
+          onChange={handleChange}>
+          <option value='Collection'>Collection</option>
+          <option value='Arrivals'>Arrivals</option>
+          <option value='Gamers'>Gamers</option>
+          <option value='Discount'>Discount</option>
+          <option value='BestSelling'>BestSelling</option>
+          <option value='NewArrivals'>NewArrivals</option>
+        </select>
+        {errors.type && <p className='error-text'>{errors.type}</p>}
+      </div>
+
       <div className='w-full flex items-center justify-center h-[10vh] gap-4'>
         <Link
           href='/admin/board'
-          className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-medium'>
+          className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-semibold'>
           Cancel
         </Link>
         <button

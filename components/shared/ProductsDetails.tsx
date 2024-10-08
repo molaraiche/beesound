@@ -10,13 +10,9 @@ const ProductsDetails = async ({
   title,
   image,
   price,
-  brand,
-  model,
-  color,
   colors,
-  factor,
   images,
-  technology,
+  description,
   AllProducts,
 }: productType) => {
   return (
@@ -64,24 +60,7 @@ const ProductsDetails = async ({
           </div>
           <p className='text-2xl font-medium'>${price}</p>
           <div className='flex flex-col mt-3'>
-            <p className=' mt-3'>
-              <span className='font-medium'> Brand:</span> <span>{brand}</span>
-            </p>
-            <p className=' mt-3'>
-              <span className='font-medium'>Model Name:</span>{" "}
-              <span>{model}</span>
-            </p>
-            <p className=' mt-3'>
-              <span className='font-medium'>Color:</span> <span>{color}</span>
-            </p>
-            <p className=' mt-3'>
-              <span className='font-medium'>Form Factor:</span>{" "}
-              <span>{factor}</span>
-            </p>
-            <p className=' mt-3'>
-              <span className='font-medium'>Connectivity Technology:</span>{" "}
-              <span>{technology}</span>
-            </p>
+            <p className='text-lg leading-7 mt-10'>{description}</p>
           </div>
           <div className='mt-4'>
             <button className='bg-primary w-[279px] p-4 text-dark-white font-medium text-lg rounded-[10px] '>

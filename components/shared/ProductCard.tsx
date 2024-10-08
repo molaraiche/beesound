@@ -38,13 +38,13 @@ const ProductCard = ({
             <div
               key={color}
               style={{ background: color }}
-              className={`w-[27px] h-[27px] rounded-full border border-red-600`}></div>
+              className={`w-[27px] h-[27px] rounded-full border border-white`}></div>
           ))}
         </div>
 
         {oldPrice && (
           <p className='text-2xl font-medium text-[#616161] line-through	'>
-            $ {oldPrice},00
+            $ {oldPrice}
           </p>
         )}
         <p className='text-2xl font-medium'>$ {price} </p>

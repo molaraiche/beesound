@@ -1,4 +1,3 @@
-// components/CheckoutButton.tsx
 "use client";
 
 import { useState } from "react";
@@ -14,16 +13,15 @@ export default function CheckoutButton() {
   const handleCheckout = async () => {
     setLoading(true);
 
-    // Create a checkout session
+
     const response = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: 1000 }), // $10 in cents
+      body: JSON.stringify({ amount: 1000 }), 
     });
 
     const session = await response.json();
 
-    // Redirect to Stripe Checkout
     const stripe = await stripePromise;
     if (stripe) {
       await stripe.redirectToCheckout({ sessionId: session.id });

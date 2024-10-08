@@ -27,11 +27,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       width={product.width}
       height={product.height}
       images={product.images}
-      brand={product.brand}
-      model={product.model}
-      technology={product.technology}
-      color={product.color}
-      factor={product.factor}
+      description={product.description}
       AllProducts={AllProducts}
     />
   );

@@ -1,6 +1,7 @@
 "use client";
 import { productType } from "@/types/types";
 import { deleteProduct, getAllCollection } from "@/utils/server.action";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 
@@ -10,7 +11,7 @@ interface DeleteProductProps {
 
 const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
   const [products, setProducts] = useState<productType[]>([]);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -30,6 +31,7 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
       try {
         await deleteProduct(productId);
         setProducts(products.filter((product) => product.id !== productId));
+        router.refresh();
       } catch (error) {
         console.error("Error deleting product:", error);
       }
@@ -39,7 +41,7 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
   return (
     <>
       <button
-        onClick={() => handleDelete(id)} // Pass the id correctly here
+        onClick={() => handleDelete(id)}
         className='bg-red-500 text-white flex items-center gap-2 py-2 px-4 rounded-[10px] hover:opacity-80 w-full'>
         <MdDelete />
         <span>Delete</span>
