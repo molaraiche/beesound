@@ -8,16 +8,7 @@ export const productSchema = z
     description: z
       .string()
       .min(5, { message: "Description must contain at least 5 words" })
-      .max(100, { message: "Description cannot exceed 100 words" })
-      .refine(
-        (value) => {
-          const wordCount = value.trim().split(/\s+/).length;
-          return wordCount >= 5 && wordCount <= 100;
-        },
-        {
-          message: "Description must contain between 5 and 100 words",
-        }
-      ),
+      .max(100, { message: "Description cannot exceed 100 words" }),
     price: z
       .number()
       .positive({ message: "Price must be a positive number" })
@@ -53,11 +44,16 @@ export const productSchema = z
       }
     ),
   })
-  .refine((data) => data.oldPrice <= data.price, {
-    message: "Old Price should be less than or equal to Price",
-    path: ["oldPrice"],
-  })
-  .refine((data) => (data.discount === false ? data.oldPrice === 0 : true), {
-    message: "If Discount is false, Old Price must be 0",
-    path: ["oldPrice"],
-  });
+
+  .refine(
+    (data) => {
+      if (data.discount) {
+        return data.oldPrice > data.price;
+      }
+      return true;
+    },
+    {
+      message: "Old Price must be greater than Price when Discount is applied.",
+      path: ["oldPrice"],
+    }
+  );
