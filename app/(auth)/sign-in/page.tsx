@@ -53,9 +53,9 @@ const SignIn = () => {
       }
     } catch (err) {
       if (err instanceof Error) {
-        console.error("Error during admin sign-in:", err.message);
+        console.error("Error during sign-in:", err.message);
       } else {
-        console.error("An unknown error occurred during admin sign-in.");
+        console.error("An unknown error occurred during sign-in.");
       }
     }
   };
@@ -68,6 +68,7 @@ const SignIn = () => {
       [name]: value,
     }));
   };
+
   const googleHandler = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -104,9 +105,9 @@ const SignIn = () => {
       }
     } catch (err) {
       if (err instanceof Error) {
-        console.error("Error during admin sign-in:", err.message);
+        console.error("Error during Google sign-in:", err.message);
       } else {
-        console.error("An unknown error occurred during admin sign-in.");
+        console.error("An unknown error occurred during Google sign-in.");
       }
     }
   };
@@ -134,25 +135,25 @@ const SignIn = () => {
               onSubmit={submitHandler}
               className='bg-secondary p-20 text-white rounded-xl flex flex-col gap-5'>
               <div className='flex items-center justify-between gap-5 w-full'>
-                <label htmlFor='' className='w-[100px]'>
+                <label htmlFor='email' className='w-[100px]'>
                   Email:
                 </label>
                 <input
                   type='email'
                   placeholder='Email'
-                  name=''
+                  name='email'
                   onChange={onChangeHandler}
                   className='bg-secondary outline-none font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full w-[400px] p-4'
                 />
               </div>
               <div className='flex items-center gap-5 w-full'>
-                <label htmlFor='' className='w-[100px]'>
+                <label htmlFor='password' className='w-[100px]'>
                   Password:
                 </label>
                 <input
                   type='password'
                   placeholder='Password'
-                  name=''
+                  name='password'
                   onChange={onChangeHandler}
                   className='bg-secondary outline-none font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full w-[400px] p-4'
                 />

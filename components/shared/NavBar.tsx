@@ -15,6 +15,23 @@ interface searchType {
   searchToggle: boolean;
 }
 
+const decodeToken = (token: string) => {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+        .join("")
+    );
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+};
+
 const NavBar = () => {
   const [menu, setMenu] = useState<menuType>({ menu: true });
   const [searchToggle, setSearchToggle] = useState<searchType>({
@@ -24,15 +41,24 @@ const NavBar = () => {
   const [logOutDisplay, setLogOutDisplay] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const token = getCookie("token");
-    const displayName = getCookie("displayName") as string | null;
-    const email = getCookie("email") as string | null;
+    const token = getCookie("token") as string | null;
+    const role = getCookie("role") as string | null;
 
     if (token) {
       setIsLoggedIn(true);
-      setUserName(displayName || email || "Guest");
+
+      const decodedToken = decodeToken(token);
+      const email = decodedToken?.email || null;
+      setUserName(email);
+
+      if (role === "admin") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
     } else {
       setIsLoggedIn(false);
     }
@@ -112,7 +138,7 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        {isLoggedIn ? (
+        {isLoggedIn && !isAdmin ? (
           <div className='relative'>
             <span
               className='font-semibold text-primary cursor-pointer'
@@ -123,8 +149,12 @@ const NavBar = () => {
               className={`absolute bg-secondary   items-center justify-center right-0 left-0 rounded-lg ${
                 logOutDisplay ? "flex" : "hidden"
               } `}>
-              <Logout  className='text-white' />
+              <Logout className='text-white' />
             </div>
+          </div>
+        ) : isAdmin ? (
+          <div className='relative'>
+            <Logout className='text-white' />
           </div>
         ) : (
           <Link
