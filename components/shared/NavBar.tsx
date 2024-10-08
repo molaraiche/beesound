@@ -143,7 +143,7 @@ const NavBar = () => {
             <span
               className='font-semibold text-primary cursor-pointer'
               onClick={() => setLogOutDisplay(!logOutDisplay)}>
-              Welcome, {userName || "Guest"}
+              Welcome, {userName}
             </span>
             <div
               className={`absolute bg-secondary   items-center justify-center right-0 left-0 rounded-lg ${
@@ -152,17 +152,15 @@ const NavBar = () => {
               <Logout className='text-white' />
             </div>
           </div>
-        ) : isAdmin ? (
-          <div className='relative'>
-            <Logout className='text-white' />
-          </div>
         ) : (
-          <Link
-            href='/sign-up'
-            onClick={closeHandler}
-            className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
-            Sign Up
-          </Link>
+          isAdmin && (
+            <Link
+              href='/sign-up'
+              onClick={closeHandler}
+              className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
+              Sign Up
+            </Link>
+          )
         )}
       </div>
       <div className='lg:hidden'>

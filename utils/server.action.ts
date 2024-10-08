@@ -108,3 +108,27 @@ export const getDiscountsProducts = async (): Promise<productType[]> => {
   })) as productType[];
   return products;
 };
+export const getBestSellingProducts = async (): Promise<productType[]> => {
+  const q = query(
+    collection(db, "products"),
+    where("type", "==", "BestSelling")
+  );
+  const querySnapshot = await getDocs(q);
+  const products = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as productType[];
+  return products;
+};
+export const getNewArrivalsProducts = async (): Promise<productType[]> => {
+  const q = query(
+    collection(db, "products"),
+    where("type", "==", "NewArrivals")
+  );
+  const querySnapshot = await getDocs(q);
+  const products = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as productType[];
+  return products;
+};

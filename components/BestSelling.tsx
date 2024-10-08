@@ -3,10 +3,10 @@ import { GoArrowRight } from "react-icons/go";
 import ProductCard from "./shared/ProductCard";
 import { productType } from "@/types/types";
 import PremiumCard from "./shared/PremiumCard";
-import { getCollectionProducts } from "@/utils/server.action";
+import { getBestSellingProducts } from "@/utils/server.action";
 
 const BestSelling = async () => {
-  const products: productType[] = await getCollectionProducts();
+  const products: productType[] = await getBestSellingProducts();
 
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>

@@ -2,10 +2,10 @@ import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
 import ProductCard from "./shared/ProductCard";
 import { productType } from "@/types/types";
-import { getArrivalsProducts } from "@/utils/server.action";
+import { getNewArrivalsProducts } from "@/utils/server.action";
 
 const NewArrivals = async () => {
-  const products: productType[] = await getArrivalsProducts();
+  const products: productType[] = await getNewArrivalsProducts();
 
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
