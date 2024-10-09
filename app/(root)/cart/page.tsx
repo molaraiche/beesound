@@ -9,23 +9,19 @@ import { productType } from "@/types/types";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<productType[]>([]);
-
-  // Fetch cart items from localStorage on initial load
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(storedCart);
   }, []);
 
-  // Calculate total price of cart items
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + (item.price || 0), 0);
   };
 
-  // Function to remove item from cart
   const removeFromCart = (itemId: string) => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
@@ -63,10 +59,16 @@ const Cart = () => {
               item={{
                 image: item.image,
                 title: item.title,
-                color: item.color ?? "#ccc", // Fallback to a default color if undefined
+                color: item.color ?? "#ccc",
                 price: item.price,
               }}
-              onRemove={() => removeFromCart(item.id)} // Remove item from cart when the button is clicked
+              onRemove={() => {
+                if (item.id) {
+                  removeFromCart(item.id);
+                } else {
+                  console.error("Item id is undefined");
+                }
+              }}
             />
           ))
         ) : (
