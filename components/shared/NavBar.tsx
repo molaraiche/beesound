@@ -1,13 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
-import { getCookie } from "cookies-next";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TbShoppingBag } from "react-icons/tb";
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
-import Logout from "./LogoutBtn";
-const role = getCookie("role") as string | null;
+
 interface menuType {
   menu: boolean;
 }
@@ -15,54 +13,11 @@ interface searchType {
   searchToggle: boolean;
 }
 
-const decodeToken = (token: string) => {
-  try {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-        .join("")
-    );
-    return JSON.parse(jsonPayload);
-  } catch (error) {
-    console.error("Error decoding token:", error);
-    return null;
-  }
-};
-
 const NavBar = () => {
   const [menu, setMenu] = useState<menuType>({ menu: true });
   const [searchToggle, setSearchToggle] = useState<searchType>({
     searchToggle: false,
   });
-
-  const [logOutDisplay, setLogOutDisplay] = useState(false);
-  const [userName, setUserName] = useState<string | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const token = getCookie("token") as string | null;
-    const role = getCookie("role") as string | null;
-
-    if (token) {
-      setIsLoggedIn(true);
-
-      const decodedToken = decodeToken(token);
-      const email = decodedToken?.email || null;
-      setUserName(email);
-
-      if (role === "admin") {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
 
   const menuHandler = () => setMenu({ menu: !menu.menu });
   const closeHandler = () => setMenu({ menu: true });
@@ -138,28 +93,6 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        {isLoggedIn && !isAdmin ? (
-          <div className='relative'>
-            <span
-              className='font-semibold text-primary cursor-pointer'
-              onClick={() => setLogOutDisplay(!logOutDisplay)}>
-              Welcome, {userName}
-            </span>
-            <div
-              className={`absolute bg-secondary   items-center justify-center right-0 left-0 rounded-lg ${
-                logOutDisplay ? "flex" : "hidden"
-              } `}>
-              <Logout className='text-white' role={`${role}`} />
-            </div>
-          </div>
-        ) : (
-          <Link
-            href='/sign-up'
-            onClick={closeHandler}
-            className='border-2 py-2.5 px-8 rounded-[10px] lg:border-secondary lg:text-secondary'>
-            Sign Up
-          </Link>
-        )}
       </div>
       <div className='lg:hidden'>
         {menu.menu ? (
