@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
             product_data: {
               name: "Test Product",
             },
-            unit_amount: amount, // amount in cents
+            unit_amount: amount,
           },
           quantity: 1,
         },
@@ -29,6 +29,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ id: session.id });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    const errorMessage =
+      error instanceof Error ? error.message : "An unknown error occurred";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
