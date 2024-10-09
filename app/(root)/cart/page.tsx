@@ -1,9 +1,33 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import InCart from "@/components/shared/InCart";
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import CheckoutButton from "@/components/shared/CheckoutButton";
+import { productType } from "@/types/types";
 
 const Cart = () => {
+  const [cartItems, setCartItems] = useState<productType[]>([]);
+
+  // Fetch cart items from localStorage on initial load
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartItems(storedCart);
+  }, []);
+
+  // Calculate total price of cart items
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + (item.price || 0), 0);
+  };
+
+  // Function to remove item from cart
+  const removeFromCart = (itemId: string) => {
+    const updatedCart = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+  };
+
   return (
     <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 py-28'>
       <div className='flex items-center justify-between'>
@@ -22,26 +46,35 @@ const Cart = () => {
               Product Image
             </p>
             <p className='text-center font-medium text-secondary'>
-              {" "}
-              Product title
+              Product Title
             </p>
             <p className='text-center font-medium text-secondary'>
-              product Color
+              Product Color
             </p>
           </div>
           <div className='w-[20%] flex items-center justify-center'>
-            <p>price</p>
+            <p>Price</p>
           </div>
         </div>
-        <InCart />
+        {cartItems.length > 0 ? (
+          cartItems.map((item, index) => (
+            <InCart
+              key={index}
+              item={{
+                image: item.image,
+                title: item.title,
+                color: item.color ?? "#ccc", // Fallback to a default color if undefined
+                price: item.price,
+              }}
+              onRemove={() => removeFromCart(item.id)} // Remove item from cart when the button is clicked
+            />
+          ))
+        ) : (
+          <p className='text-center mt-10'>Your cart is empty</p>
+        )}
       </div>
       <div className='h-[10vh] flex items-center justify-end '>
-        {/* <Link
-          href='/checkout'
-          className='bg-primary rounded-[10px] text-white py-2 px-10 font-medium'>
-          Checkout
-        </Link> */}
-        <CheckoutButton />
+        <CheckoutButton total={calculateTotal()} />
       </div>
     </div>
   );
