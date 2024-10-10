@@ -106,6 +106,6 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ## 📞 Contact Me
 
-[![Follow us on twitter](https://img.shields.io/twitter/follow/jsmasterypro.svg?style=social)](https://twitter.com/intent/follow?screen_name=molaraiche)
+[![Follow us on twitter](https://img.shields.io/twitter/follow/molaraiche.svg?style=social)](https://twitter.com/intent/follow?screen_name=molaraiche)
 [![Follow us on LinkedIn](https://img.shields.io/badge/LinkedIn-mohamedlaraiche-blue?style=flat&logo=linkedin&logoColor=b0c0c0&labelColor=363D44)](https://www.linkedin.com/company/mohamedlaraiche)
 [![Follow us on Instagram](https://img.shields.io/badge/Instagram-molaraiche-grey?style=flat&logo=instagram&logoColor=b0c0c0&labelColor=8134af)](https://www.instagram.com/molaraiche)
