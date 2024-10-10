@@ -34,9 +34,9 @@ const BestSelling = async () => {
               colors={product.colors}
               width={product.width}
               height={product.height}
-              cardWidth={304}
-              cardHeight={498}
-              classeName='rotate-[20deg] hover:scale-110 transition-all'
+              // cardWidth={500}
+              // cardHeight={500}
+              classeName='hover:scale-110 transition-all object-cover'
             />
           </Link>
         ))}

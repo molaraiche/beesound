@@ -17,7 +17,7 @@ const Home = () => {
           </p>
           <div className='mt-10'>
             <Link
-              href='/collection'
+              href='/collection/gbauM1zcHquqlsnriu4L'
               className='bg-white border-2 border-secondary py-2.5 px-8 rounded-[10px] text-secondary'>
               Buy Now
             </Link>

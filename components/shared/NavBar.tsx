@@ -38,10 +38,10 @@ const NavBar = () => {
         <span className='text-[23px]'>BeeSound</span>
       </Link>
       <nav
-        className={`flex gap-[85px] lg:static absolute top-[10vh] lg:bg-white bg-secondary  lg:flex-row flex-col right-0 lg:w-fit w-full items-center lg:py-0 py-4 lg:text-black text-white transition-all
+        className={`flex gap-[85px] lg:static absolute top-[15vh] lg:bg-white bg-secondary  lg:flex-row flex-col right-0 lg:w-fit w-full items-center lg:py-0 py-4 lg:text-black text-white transition-all z-10
         ${
           menu.menu
-            ? "lg:translate-y-0 -translate-y-[200%]"
+            ? "lg:translate-y-0 -translate-y-[200%] "
             : "-translate-y-[0%]"
         }
         `}>
@@ -65,7 +65,7 @@ const NavBar = () => {
         </Link>
       </nav>
       <div
-        className={`flex justify-between lg:gap-20 xsm:gap-10 lg:static absolute top-[41vh] right-0 lg:w-fit w-full sm:flex-row xsm:flex-col items-center lg:py-0 p-4 lg:bg-white bg-secondary text-white lg:text-black transition-all
+        className={`flex justify-between lg:gap-20 xsm:gap-10 lg:static absolute top-[45vh] right-0 lg:w-fit w-full sm:flex-row xsm:flex-col items-center lg:py-0 p-4 lg:bg-white bg-secondary text-white lg:text-black transition-all z-10
         ${
           menu.menu
             ? " lg:translate-y-0 -translate-y-[800%]"

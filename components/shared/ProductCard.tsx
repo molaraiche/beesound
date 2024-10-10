@@ -10,30 +10,29 @@ const ProductCard = ({
   colors,
   oldPrice,
   discount,
-  classeName,
-  cardHeight,
-  cardWidth,
 }: productType) => {
   return (
     <div
-      className={`w-[${cardWidth}px] h-[${cardHeight}px] relative lg:my-0 my-10`}>
-      <div className='bg-dark-white flex items-center justify-center rounded-[5px]'>
+      className={` w-[350px] h-[500px] relative lg:my-0 my-10 shadow-md rounded-lg`}>
+      <div className='bg-dark-white flex items-center justify-center rounded-[5px] '>
         <div className='flex'>
           {discount ? (
             <div className='absolute top-[5vh] rounded-full bg-[#F00] w-[40px] h-[40px] flex items-center justify-center text-white'>
               {discount}%
             </div>
           ) : null}
-          <Image
-            src={image}
-            alt={title}
-            width={250}
-            height={250}
-            className={classeName}
-          />
+          <div className='m-10'>
+            <Image
+              src={image}
+              alt={title}
+              width={300}
+              height={300}
+              className='w-[179px] h-[242px] object-cover'
+            />
+          </div>
         </div>
       </div>
-      <div className='mt-5'>
+      <div className='mt-5 px-4'>
         <h3 className='text-2xl font-medium'>{title}</h3>
         <div className='flex gap-2 my-5'>
           {colors.map((color) => (

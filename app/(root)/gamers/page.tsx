@@ -36,33 +36,6 @@ const Gamers = async () => {
           </Link>
         ))}
       </div>
-      <div className='flex gap-8 justify-center items-center mt-20 flex-wrap'>
-        {products.map((product: productType) => (
-          <Link
-            key={product.id}
-            href={{
-              pathname: `/collection/${product.id}`,
-              query: {
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                colors: product.colors,
-                width: product.width,
-                height: product.height,
-              },
-            }}>
-            <ProductCard
-              price={product.price}
-              title={product.title}
-              image={product.image}
-              colors={product.colors}
-              width={product.width}
-              height={product.height}
-              classeName='hover:scale-110	transition-all'
-            />
-          </Link>
-        ))}
-      </div>
     </section>
   );
 };

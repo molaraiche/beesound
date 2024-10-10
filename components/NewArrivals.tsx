@@ -31,8 +31,8 @@ const NewArrivals = async () => {
               title={product.title}
               image={product.image}
               colors={product.colors}
-              width={product.width}
-              height={product.height}
+              width={500}
+              height={500}
               classeName='hover:scale-110	transition-all'
             />
           ))}

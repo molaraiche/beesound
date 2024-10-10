@@ -9,7 +9,7 @@ const BlackFriday = async () => {
   return (
     <div className='bg-dark-black'>
       <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 py-28'>
-        <div className='flex text-white justify-between lg:flex-nowrap flex-wrap'>
+        <div className='flex text-white justify-between lg:flex-nowrap flex-wrap gap-10'>
           <div className='my-10 flex flex-col lg:items-start items-center w-full'>
             <h1 className='text-[40px] font-medium leading-[54px]'>
               Our Black Friday Discount
@@ -23,8 +23,6 @@ const BlackFriday = async () => {
                 image={product.image}
                 title={product.title}
                 oldPrice={product.oldPrice}
-                height={product.height}
-                width={product.width}
                 price={product.price}
                 colors={product.colors}
                 discount={true}
