@@ -25,16 +25,17 @@ const NewArrivals = async () => {
         </div>
         <div className='flex items-center lg:justify-between justify-center mt-5 gap-[22px] lg:flex-nowrap flex-wrap'>
           {products.map((product: productType) => (
-            <ProductCard
-              key={product.id}
-              price={product.price}
-              title={product.title}
-              image={product.image}
-              colors={product.colors}
-              width={500}
-              height={500}
-              classeName='hover:scale-110	transition-all'
-            />
+            <Link href={`/arrivals/${product.id}`} key={product.id}>
+              <ProductCard
+                price={product.price}
+                title={product.title}
+                image={product.image}
+                colors={product.colors}
+                width={500}
+                height={500}
+                classeName='hover:scale-110	transition-all'
+              />
+            </Link>
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@ import { productType } from "@/types/types";
 import ProductCard from "./shared/ProductCard";
 import Counter from "./Counter";
 import { getDiscountsProducts } from "@/utils/server.action";
+import Link from "next/link";
 
 const BlackFriday = async () => {
   const products: productType[] = await getDiscountsProducts();
@@ -18,15 +19,16 @@ const BlackFriday = async () => {
           </div>
           <div className='flex lg:flex-nowrap flex-wrap items-center justify-center gap-5 '>
             {products.map((product: productType) => (
-              <ProductCard
-                key={product.id}
-                image={product.image}
-                title={product.title}
-                oldPrice={product.oldPrice}
-                price={product.price}
-                colors={product.colors}
-                discount={true}
-              />
+              <Link href={`/discount/${product.id}`} key={product.id}>
+                <ProductCard
+                  image={product.image}
+                  title={product.title}
+                  oldPrice={product.oldPrice}
+                  price={product.price}
+                  colors={product.colors}
+                  discount={true}
+                />
+              </Link>
             ))}
           </div>
         </div>

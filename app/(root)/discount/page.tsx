@@ -1,37 +1,28 @@
+import Link from "next/link";
 import ProductCard from "@/components/shared/ProductCard";
 import { productType } from "@/types/types";
-import { getGamersProducts } from "@/utils/server.action";
-import Link from "next/link";
-import React from "react";
+import { getDiscountsProducts } from "@/utils/server.action";
 
-const Gamers = async () => {
-  const products: productType[] = await getGamersProducts();
+const Discount = async () => {
+  const products: productType[] = await getDiscountsProducts();
 
   return (
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 flex flex-wrap items-center justify-center my-10'>
       <div className='flex gap-8 justify-center items-center flex-wrap'>
         {products.map((product: productType) => (
-          <Link
-            key={product.id}
-            href={{
-              pathname: `/gamers/${product.id}`,
-              query: {
-                title: product.title,
-                price: product.price,
-                image: product.image,
-                colors: product.colors,
-                width: product.width,
-                height: product.height,
-              },
-            }}>
+          <Link key={product.id} href={`/discount/${product.id}`}>
             <ProductCard
+              id={product.id}
               price={product.price}
               title={product.title}
               image={product.image}
               colors={product.colors}
               width={product.width}
               height={product.height}
-              classeName='hover:scale-110	transition-all'
+              cardWidth={304}
+              cardHeight={498}
+              oldPrice={product.oldPrice}
+              classeName='rotate-[20deg] hover:scale-110 transition-all'
             />
           </Link>
         ))}
@@ -40,4 +31,4 @@ const Gamers = async () => {
   );
 };
 
-export default Gamers;
+export default Discount;

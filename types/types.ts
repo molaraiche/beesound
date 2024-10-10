@@ -15,7 +15,7 @@ export type productType = {
   cardHeight?: number;
   type?: string;
   AllProducts?: productType[];
-  color?: string;
+  color?: string | string[] | undefined;
 };
 
 export type categoriesType = {
