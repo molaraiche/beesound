@@ -28,14 +28,14 @@ const ProductsDetails = async ({
           "w-[40px] h-[40px] rounded-full flex items-center justify-center bg-primary text-dark-white"
         }
       />
-      <div className='flex items-center justify-between w-full '>
-        <div className='flex items-center justify-center w-[60%] '>
-          <div className='w-[303px] h-[359px]'>
+      <div className='flex items-center justify-between w-full lg:flex-row flex-col'>
+        <div className='flex items-center justify-center lg:w-[60%] w-full lg:flex-row md:flex-row flex-col '>
+          <div className='lg:w-[303px] w-[40%] h-[359px] flex items-center justify-center'>
             <Zoom>
               <Image src={image} alt='' width={200} height={300} />
             </Zoom>
           </div>
-          <div className='flex flex-wrap w-[400px] gap-4'>
+          <div className='flex flex-wrap items-center justify-center lg:w-[400px] w-full my-5 gap-4'>
             {images?.map((img) => (
               <div
                 key={img}
@@ -85,9 +85,9 @@ const ProductsDetails = async ({
           </div>
         </div>
       </div>
-      <div className='flex flex-col justify-center '>
+      <div className='flex flex-col justify-center min-h-[60vh] h-auto'>
         <h1 className='text-2xl font-medium mt-4'>Related Porudcts</h1>
-        <div className='flex items-center gap-10 min-h-[40vh] h-auto'>
+        <div className='flex items-center justify-center my-10 gap-10 min-h-[40vh] h-auto lg:flex-nowrap flex-wrap'>
           {products.map((product: productType) => (
             <Link href={`/${product.type}/${product.id}`} key={product.id}>
               <div className='bg-dark-white w-[300px] min-h-[200px] h-fit flex flex-col items-center justify-center gap-4 '>

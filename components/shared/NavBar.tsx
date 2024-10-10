@@ -55,7 +55,6 @@ const NavBar = () => {
   };
 
   const searchHandler = () => {
-    setMenu({ menu: true });
     setSearchToggle({ searchToggle: !searchToggle.searchToggle });
   };
 
@@ -130,7 +129,7 @@ const NavBar = () => {
                 type='search'
                 value={searchTerm}
                 onChange={handleSearch}
-                className={`border-2 border-secondary rounded-lg transition-all py-4 px-2 outline-none ${
+                className={`border-2 border-secondary text-secondary font-semibold rounded-lg transition-all py-4 px-2 outline-none ${
                   searchToggle.searchToggle ? "w-60 h-7" : "w-0 h-0 invisible"
                 }`}
               />
@@ -141,7 +140,7 @@ const NavBar = () => {
               />
             </div>
             {searchTerm && searchToggle.searchToggle && (
-              <div className='bg-white border border-gray-200 rounded-lg shadow-md w-60 absolute top-[5vh] left-3.5 z-10'>
+              <div className='bg-white border border-gray-200 rounded-lg shadow-md w-60 absolute lg:top-[5vh] top-[7vh] lg:left-3.5 left-[85px] z-10'>
                 {searchResults.length > 0 ? (
                   searchResults.map((product) => (
                     <Link
@@ -151,6 +150,7 @@ const NavBar = () => {
                       onClick={() => {
                         setSearchToggle({ searchToggle: false });
                         setSearchTerm("");
+                        setMenu({ menu: true });
                       }}>
                       <p>{product.title}</p>
                       <p className='text-sm text-gray-500'>${product.price}</p>

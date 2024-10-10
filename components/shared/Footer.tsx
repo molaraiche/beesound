@@ -27,24 +27,24 @@ const Footer = () => {
               providing over 1500 headphones for its costumers from over 80
               countries
             </p>
-            <div className='flex gap-[25px]'>
+            <div className='flex gap-[25px] items-center justify-center'>
               <Link
                 href='/'
                 className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
                 <FaInstagram className='w-[26px] h-[26px]' />
               </Link>
               <Link
-                href=''
+                href='/'
                 className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
                 <FaLinkedinIn className='w-[26px] h-[26px]' />
               </Link>
               <Link
-                href=''
+                href='/'
                 className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
                 <FaTelegramPlane className='w-[26px] h-[26px]' />
               </Link>
               <Link
-                href=''
+                href='/'
                 className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
                 <FaWhatsapp className='w-[26px] h-[26px]' />
               </Link>
@@ -53,16 +53,16 @@ const Footer = () => {
           <div className='flex justify-between gap-5 w-full my-4'>
             <div className='flex flex-col lg:w-[157px] w-fit h-[172px] '>
               <h4 className='text-2xl font-medium mb-2'>Site Map</h4>
-              <Link href='' className='mt-1'>
+              <Link href='/' className='mt-1'>
                 About Us
               </Link>
-              <Link href='' className='mt-1'>
+              <Link href='/' className='mt-1'>
                 Contact Us
               </Link>
-              <Link href='' className='mt-1'>
+              <Link href='/' className='mt-1'>
                 FAQ&apos;s
               </Link>
-              <Link href='' className='mt-1'>
+              <Link href='/' className='mt-1'>
                 Customers Services
               </Link>
             </div>
