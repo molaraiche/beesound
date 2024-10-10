@@ -10,7 +10,7 @@ const Discount = async () => {
     <section className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 flex flex-wrap items-center justify-center my-10'>
       <div className='flex gap-8 justify-center items-center flex-wrap'>
         {products.map((product: productType) => (
-          <Link key={product.id} href={`/discount/${product.id}`}>
+          <Link key={product.id} href={`/collection/${product.id}`}>
             <ProductCard
               id={product.id}
               price={product.price}

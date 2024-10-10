@@ -14,7 +14,7 @@ const Gamers = async () => {
           <Link
             key={product.id}
             href={{
-              pathname: `/gamers/${product.id}`,
+              pathname: `/collection/${product.id}`,
               query: {
                 title: product.title,
                 price: product.price,

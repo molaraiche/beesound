@@ -13,7 +13,7 @@ const Arrivals = async () => {
           <Link
             key={product.id}
             href={{
-              pathname: `/arrivals/${product.id}`,
+              pathname: `/collection/${product.id}`,
               query: {
                 title: product.title,
                 price: product.price,

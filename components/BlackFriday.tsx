@@ -19,7 +19,7 @@ const BlackFriday = async () => {
           </div>
           <div className='flex lg:flex-nowrap flex-wrap items-center justify-center gap-5 '>
             {products.map((product: productType) => (
-              <Link href={`/discount/${product.id}`} key={product.id}>
+              <Link href={`/collection/${product.id}`} key={product.id}>
                 <ProductCard
                   image={product.image}
                   title={product.title}

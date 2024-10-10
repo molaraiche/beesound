@@ -20,7 +20,11 @@ const Table = async () => {
           <tbody>
             {products.map((product) => (
               <tr key={product.id} className='even:bg-gray-100 odd:bg-white'>
-                <td className='px-4 py-2 border'>{product.title}</td>
+                <td className='px-4 py-2 border'>
+                  <Link href={`/collection/${product.id}`}>
+                    {product.title}
+                  </Link>
+                </td>
                 <td className=' py-2  border flex items-center justify-between px-10 lg:flex-nowrap flex-wrap gap-5'>
                   <Link
                     href={{
