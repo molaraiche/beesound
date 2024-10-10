@@ -13,12 +13,12 @@ const ProductCard = ({
 }: productType) => {
   return (
     <div
-      className={` w-[350px] h-[500px] relative lg:my-0 my-10 shadow-md rounded-lg`}>
+      className={` w-[350px] min-h-[500px] h-fit  relative lg:my-0 my-10 shadow-md rounded-lg`}>
       <div className='bg-dark-white flex items-center justify-center rounded-[5px] '>
         <div className='flex'>
           {discount ? (
-            <div className='absolute top-[5vh] rounded-full bg-[#F00] w-[40px] h-[40px] flex items-center justify-center text-white'>
-              {discount}%
+            <div className='absolute top-1 left-2 rounded-full bg-[#F00] w-[200px] h-[40px] flex items-center justify-center text-white font-semibold'>
+              BIG DISCOUNT !
             </div>
           ) : null}
           <div className='m-10'>
@@ -32,7 +32,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <div className='mt-5 px-4'>
+      <div className='mt-5 p-2'>
         <h3 className='text-2xl font-medium'>{title}</h3>
         <div className='flex gap-2 my-5'>
           {colors.map((color) => (
@@ -43,7 +43,7 @@ const ProductCard = ({
           ))}
         </div>
         {oldPrice && (
-          <p className='text-2xl font-medium text-[#616161] line-through'>
+          <p className='text-2xl font-medium text-red-500 line-through'>
             $ {oldPrice}
           </p>
         )}

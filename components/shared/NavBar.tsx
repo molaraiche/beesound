@@ -84,10 +84,12 @@ const NavBar = () => {
             <IoMdSearch
               className='w-[24px] h-[24px] cursor-pointer hover:text-primary'
               onClick={searchHandler}
+              title='Search'
             />
           </div>
           <Link href='/cart'>
             <TbShoppingBag
+              title='Cart'
               className='w-[24px] h-[24px] '
               onClick={closeHandler}
             />

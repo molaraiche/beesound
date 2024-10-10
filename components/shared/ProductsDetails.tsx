@@ -5,6 +5,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Back from "./Back";
 import Link from "next/link";
+import { getNewArrivalsProducts } from "@/utils/server.action";
 
 const ProductsDetails = async ({
   title,
@@ -13,8 +14,9 @@ const ProductsDetails = async ({
   colors,
   images,
   description,
-  AllProducts,
 }: productType) => {
+  const products: productType[] = await getNewArrivalsProducts();
+
   return (
     <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4'>
       <Back
@@ -71,28 +73,19 @@ const ProductsDetails = async ({
       </div>
       <div className='flex flex-col justify-center '>
         <h1 className='text-2xl font-medium mt-4'>Related Porudcts</h1>
-        <div className=''>
-          {AllProducts?.map((product: productType) => (
+        <div className='flex items-center gap-10 min-h-[40vh] h-auto'>
+          {products.map((product: productType) => (
             <Link href={`/${product.type}/${product.id}`} key={product.id}>
-              <div className='bg-dark-white w-[200px] h-[200px]'>
+              <div className='bg-dark-white w-[300px] min-h-[200px] h-fit flex flex-col items-center justify-center gap-4 '>
                 <Image
                   src={product.image}
                   alt={product.title}
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={300}
+                  className='w-[200px] h-[200px] object-cover'
                 />
                 <p className='font-semibold mt-2'> {product.title} </p>
                 <p className='font-medium my-2'> {product.price} </p>
-                <div className='flex gap-2'>
-                  {product.colors.map((color) => (
-                    <div
-                      style={{
-                        background: color,
-                      }}
-                      className='w-[20px] h-[20px] rounded-full'
-                      key={color}></div>
-                  ))}
-                </div>
               </div>
             </Link>
           ))}
