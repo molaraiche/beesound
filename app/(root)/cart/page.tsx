@@ -59,7 +59,9 @@ const Cart = () => {
               item={{
                 image: item.image,
                 title: item.title,
-                color: item.colors[0] || "#000",
+                color: Array.isArray(item.color)
+                  ? item.color[0]
+                  : item.color ?? "#ccc",
                 price: item.price,
               }}
               onRemove={() => {

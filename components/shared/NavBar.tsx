@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TbShoppingBag } from "react-icons/tb";
@@ -23,6 +23,8 @@ const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<productType[]>([]);
   const [allProducts, setAllProducts] = useState<productType[]>([]);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  const searchRef = useRef<HTMLDivElement>(null); // Reference for the search container
 
   useEffect(() => {
     async function fetchProducts() {
@@ -30,6 +32,9 @@ const NavBar = () => {
       setAllProducts(products);
     }
     fetchProducts();
+
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartItemsCount(storedCart.length);
   }, []);
 
   const menuHandler = () => setMenu({ menu: !menu.menu });
@@ -38,6 +43,7 @@ const NavBar = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
+
     if (query.length > 0) {
       const filteredProducts = allProducts.filter((product) =>
         product.title.toLowerCase().includes(query)
@@ -53,6 +59,20 @@ const NavBar = () => {
     setSearchToggle({ searchToggle: !searchToggle.searchToggle });
   };
 
+  const closeSearchOnClickOutside = (e: MouseEvent) => {
+    if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+      setSearchToggle({ searchToggle: false });
+      setSearchTerm("");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", closeSearchOnClickOutside);
+    return () => {
+      window.removeEventListener("click", closeSearchOnClickOutside);
+    };
+  }, []);
+
   return (
     <header className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 flex items-center h-[10vh] justify-between'>
       <Link href='/' className='flex items-center gap-1' onClick={closeHandler}>
@@ -64,7 +84,6 @@ const NavBar = () => {
         />
         <span className='text-[23px]'>BeeSound</span>
       </Link>
-
       <nav
         className={`flex gap-[85px] lg:static absolute top-[15vh] lg:bg-white bg-secondary  lg:flex-row flex-col right-0 lg:w-fit w-full items-center lg:py-0 py-4 lg:text-black text-white transition-all z-10
         ${
@@ -102,7 +121,9 @@ const NavBar = () => {
         }
         `}>
         <div className='flex items-center gap-4 '>
-          <div className='flex flex-col items-center justify-center'>
+          <div
+            className='flex flex-col items-center justify-center search-container'
+            ref={searchRef}>
             <div className='flex items-center gap-1'>
               <input
                 placeholder='Search'
@@ -119,17 +140,20 @@ const NavBar = () => {
                 title='Search'
               />
             </div>
-
-            {searchTerm && (
-              <div className='bg-white border border-gray-200 rounded-lg shadow-md w-60 absolute top-[5vh] left-3.5 px-2 z-10'>
+            {searchTerm && searchToggle.searchToggle && (
+              <div className='bg-white border border-gray-200 rounded-lg shadow-md w-60 absolute top-[5vh] left-3.5 z-10'>
                 {searchResults.length > 0 ? (
                   searchResults.map((product) => (
                     <Link
                       href={`/collection/${product.id}`}
                       key={product.id}
-                      className='p-2 border-b border-gray-100  '>
+                      className='p-2 border-b border-gray-100 hover:bg-gray-50'
+                      onClick={() => {
+                        setSearchToggle({ searchToggle: false });
+                        setSearchTerm("");
+                      }}>
                       <p>{product.title}</p>
-                      <p className='text-sm text-secondary'>${product.price}</p>
+                      <p className='text-sm text-gray-500'>${product.price}</p>
                     </Link>
                   ))
                 ) : (
@@ -138,17 +162,22 @@ const NavBar = () => {
               </div>
             )}
           </div>
-
-          <Link href='/cart'>
-            <TbShoppingBag
-              title='Cart'
-              className='w-[24px] h-[24px] '
-              onClick={closeHandler}
-            />
+          <Link href='/cart' className='relative'>
+            <div className='relative'>
+              <TbShoppingBag
+                title='Cart'
+                className='w-[24px] h-[24px] '
+                onClick={closeHandler}
+              />
+              {cartItemsCount > 0 && (
+                <span className='absolute top-0 right-0 rounded-full bg-primary text-white text-[8px] w-[12px] h-[12px] flex items-center justify-center'>
+                  {cartItemsCount}
+                </span>
+              )}
+            </div>
           </Link>
         </div>
       </div>
-
       <div className='lg:hidden'>
         {menu.menu ? (
           <RiMenu3Fill className='w-[24px] h-[24px] ' onClick={menuHandler} />
