@@ -1,7 +1,5 @@
 # Beesound - a modern ecommerce store
 
-![demo](https://ibb.co/nQjgXLg)
-
 ## 🌐 Demo
 
 Here is a working live demo: https://beesound.vercel.app/
