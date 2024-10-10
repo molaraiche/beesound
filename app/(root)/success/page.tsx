@@ -1,5 +1,3 @@
-// app/success/page.tsx
-
 export default function SuccessPage() {
   return (
     <div className='flex justify-center items-center min-h-screen bg-gray-100'>

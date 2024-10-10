@@ -14,7 +14,6 @@ export type productType = {
   cardWidth?: number;
   cardHeight?: number;
   type?: string;
-  AllProducts?: productType[];
   color?: string | string[] | undefined;
 };
 

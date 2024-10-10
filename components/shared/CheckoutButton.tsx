@@ -8,7 +8,7 @@ const stripePromise = loadStripe(
 );
 
 interface CheckoutButtonProps {
-  total: number; // Pass the total cart value as a prop
+  total: number; 
 }
 
 export default function CheckoutButton({ total }: CheckoutButtonProps) {
@@ -18,11 +18,10 @@ export default function CheckoutButton({ total }: CheckoutButtonProps) {
     setLoading(true);
 
     try {
-      // Create a checkout session using your API endpoint
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: total * 100 }), // Convert total to cents for Stripe
+        body: JSON.stringify({ amount: total * 100 }), 
       });
 
       if (!response.ok) {

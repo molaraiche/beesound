@@ -4,7 +4,7 @@ import "./styles.css";
 export const metadata = {
   title: "Auth - BeeSound | molaraiche",
   description:
-    "BeeSound is an ecommerce websie developed by molaraiche (Mohamed Laraiche) using, next js tailwind typescript and lot of others techs",
+    "BeeSound is the one of the world’s largest online shops that providing over 1500 headphones for its costumers from over 80 countries",
 };
 const inter = Inter({
   subsets: ["latin"],

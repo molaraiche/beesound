@@ -17,7 +17,6 @@ const Dashboard = async () => {
           </Link>
         </div>
       ) : null}
-
       <Table />
     </section>
   );

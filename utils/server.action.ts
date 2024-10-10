@@ -50,9 +50,9 @@ export const addProduct = async (productData: productType) => {
 
 export const updateProduct = async (id: string, productData: productType) => {
   try {
-    const productRef = doc(db, "products", id); // Reference to the specific document
+    const productRef = doc(db, "products", id);
     await updateDoc(productRef, {
-      ...productData, // Updating with new data
+      ...productData, 
     });
     console.log("Product updated successfully with ID:", id);
   } catch (error) {

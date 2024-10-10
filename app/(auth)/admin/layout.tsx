@@ -4,7 +4,7 @@ import "@/app/globals.css";
 export const metadata: Metadata = {
   title: "Dashboard | BeeSound | molaraiche",
   description:
-    "BeeSound is an ecommerce websie developed by molaraiche (Mohamed Laraiche) using, next js tailwind typescript and lot of others techs",
+    "BeeSound is the one of the world’s largest online shops that providing over 1500 headphones for its costumers from over 80 countries",
 };
 
 export default function InnerLayout({

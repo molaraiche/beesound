@@ -1,7 +1,5 @@
 import ProductsDetails from "@/components/shared/ProductsDetails";
-import { productType } from "@/types/types";
 import { getProductById } from "@/utils/server.action";
-import { getAllCollection } from "@/utils/server.action";
 
 interface ProductPageProps {
   params: {
@@ -10,7 +8,6 @@ interface ProductPageProps {
 }
 
 const ProductPage = async ({ params }: ProductPageProps) => {
-  const AllProducts: productType[] = await getAllCollection();
   const product = await getProductById(params.id);
 
   if (!product) {
@@ -28,7 +25,6 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       height={product.height}
       images={product.images}
       description={product.description}
-      AllProducts={AllProducts}
     />
   );
 };
