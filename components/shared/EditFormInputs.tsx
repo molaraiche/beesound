@@ -114,13 +114,16 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='flex flex-col items-center justify-center h-[90vh]'>
-      <div className='flex items-center justify-between'>
+      className='flex flex-col items-center justify-center min-h-[90vh] h-auto'>
+      <div
+        className='
+      flex items-center lg:justify-between lg:flex-row flex-col  justify-center
+      '>
         <div className='formGrp'>
           <label htmlFor='title' className='label'>
             Title:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='text'
               className='input'
@@ -136,7 +139,7 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           <label htmlFor='price' className='label'>
             Price:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='number'
               className='input'
@@ -151,12 +154,15 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div
+        className='
+      flex items-center lg:justify-between lg:flex-row flex-col  justify-center
+      '>
         <div className='formGrp'>
           <label htmlFor='image' className='label'>
             Main Image:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='file'
               className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
@@ -170,7 +176,7 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           <label htmlFor='images' className='label'>
             Other Images:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='file'
               className='input block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-secondary hover:file:bg-blue-100'
@@ -185,12 +191,15 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div
+        className='
+      flex items-center lg:justify-between lg:flex-row flex-col  justify-center
+      '>
         <div className='formGrp'>
           <label htmlFor='discount' className='label'>
             Discount:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <select
               name='discount'
               id='discount'
@@ -207,7 +216,7 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           <label htmlFor='oldPrice' className='label'>
             Old Price:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='number'
               className='input'
@@ -222,12 +231,15 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div
+        className='
+      flex items-center lg:justify-between lg:flex-row flex-col  justify-center
+      '>
         <div className='formGrp'>
           <label htmlFor='description' className='label'>
             Description:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <textarea
               cols={30}
               rows={3}
@@ -246,7 +258,7 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
           <label htmlFor='colors' className='label'>
             Colors:
           </label>
-          <div>
+          <div className='flex items-center justify-center flex-col'>
             <input
               type='text'
               className='input'
@@ -260,26 +272,28 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
         </div>
       </div>
 
-      <div className='flex my-10'>
+      <div className='flex my-10 lg:flex-row flex-col justify-center'>
         <label htmlFor='type' className='label'>
           Type
         </label>
-        <select
-          name='type'
-          className='input'
-          value={product.type}
-          onChange={handleChange}>
-          <option value='Collection'>Collection</option>
-          <option value='Arrivals'>Arrivals</option>
-          <option value='Gamers'>Gamers</option>
-          <option value='Discount'>Discount</option>
-          <option value='BestSelling'>BestSelling</option>
-          <option value='NewArrivals'>NewArrivals</option>
-        </select>
-        {errors.type && <p className='error-text'>{errors.type}</p>}
+        <div className='flex flex-col items-center justify-center'>
+          <select
+            name='type'
+            className='input'
+            value={product.type}
+            onChange={handleChange}>
+            <option value='Collection'>Collection</option>
+            <option value='Arrivals'>Arrivals</option>
+            <option value='Gamers'>Gamers</option>
+            <option value='Discount'>Discount</option>
+            <option value='BestSelling'>BestSelling</option>
+            <option value='NewArrivals'>NewArrivals</option>
+          </select>
+          {errors.type && <p className='error-text'>{errors.type}</p>}
+        </div>
       </div>
 
-      <div className='w-full flex items-center justify-center h-[10vh] gap-4'>
+      <div className='w-full flex items-center justify-center min-h-[10vh] h-auto gap-4 lg:flex-row flex-col-reverse'>
         <Link
           href='/admin/board'
           className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-semibold'>

@@ -24,6 +24,6 @@
   }
 
   .error-text {
-    @apply text-red-500 font-semibold mt-1
+    @apply text-red-500 font-semibold mt-1 text-center
   }
-} 
+}

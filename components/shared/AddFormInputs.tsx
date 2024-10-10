@@ -86,7 +86,7 @@ const AddFormInputs = () => {
       setErrors(formattedErrors);
       setTimeout(() => {
         setErrors({});
-      }, 300);
+      }, 100000);
       return;
     }
 
@@ -97,13 +97,13 @@ const AddFormInputs = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='flex flex-col items-center justify-center h-[90vh]'>
-      <div className='flex items-center justify-between'>
+      className='flex flex-col items-center justify-center min-h-[90vh] w-full'>
+      <div className='flex items-center lg:justify-between  lg:flex-row flex-col justify-center '>
         <div className='formGrp'>
           <label htmlFor='title' className='label'>
             Title:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='text'
               className='input'
@@ -118,7 +118,7 @@ const AddFormInputs = () => {
           <label htmlFor='price' className='label'>
             Price:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='number'
               className='input'
@@ -132,12 +132,12 @@ const AddFormInputs = () => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center lg:justify-between lg:flex-row flex-col  justify-center'>
         <div className='formGrp'>
           <label htmlFor='image' className='label'>
             Main Image:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='file'
               className='input'
@@ -151,7 +151,7 @@ const AddFormInputs = () => {
           <label htmlFor='images' className='label'>
             Other Images:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='file'
               className='input'
@@ -166,12 +166,12 @@ const AddFormInputs = () => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center lg:justify-between lg:flex-row flex-col  justify-center'>
         <div className='formGrp'>
           <label htmlFor='discount' className='label'>
             Discount:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <select
               name='discount'
               id='discount'
@@ -187,7 +187,7 @@ const AddFormInputs = () => {
           <label htmlFor='oldPrice' className='label'>
             Old Price:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='number'
               className='input'
@@ -201,12 +201,12 @@ const AddFormInputs = () => {
         </div>
       </div>
 
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center lg:justify-between lg:flex-row flex-col  justify-center'>
         <div className='formGrp'>
           <label htmlFor='description' className='label'>
             Description:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <textarea
               cols={30}
               rows={3}
@@ -224,7 +224,7 @@ const AddFormInputs = () => {
           <label htmlFor='colors' className='label'>
             Colors:
           </label>
-          <div>
+          <div className='flex items-center justify-center  flex-col'>
             <input
               type='text'
               className='input'
@@ -237,26 +237,28 @@ const AddFormInputs = () => {
         </div>
       </div>
 
-      <div className='flex my-10'>
+      <div className='flex my-10 lg:flex-row flex-col justify-center '>
         <label htmlFor='type' className='label'>
           Type
         </label>
-        <select
-          name='type'
-          className='input'
-          onChange={handleChange}
-          value={product.type}>
-          <option value='Collection'>Collection</option>
-          <option value='Arrivals'>Arrivals</option>
-          <option value='Gamers'>Gamers</option>
-          <option value='Discount'>Discount</option>
-          <option value='BestSelling'>BestSelling</option>
-          <option value='NewArrivals'>NewArrivals</option>
-        </select>
-        {errors.type && <p className='error-text'>{errors.type}</p>}
+        <div className='flex items-center justify-center flex-col'>
+          <select
+            name='type'
+            className='input'
+            onChange={handleChange}
+            value={product.type}>
+            <option value='Collection'>Collection</option>
+            <option value='Arrivals'>Arrivals</option>
+            <option value='Gamers'>Gamers</option>
+            <option value='Discount'>Discount</option>
+            <option value='BestSelling'>BestSelling</option>
+            <option value='NewArrivals'>NewArrivals</option>
+          </select>
+          {errors.type && <p className='error-text'>{errors.type}</p>}
+        </div>
       </div>
 
-      <div className='w-full flex items-center justify-center h-[10vh] gap-4'>
+      <div className='w-full flex items-center justify-center min-h-[10vh] h-auto my-10 gap-4 lg:flex-row flex-col-reverse'>
         <Link
           href='/admin/board'
           className='bg-dark-white text-primary py-4 px-20 w-fit rounded-[10px] font-semibold'>

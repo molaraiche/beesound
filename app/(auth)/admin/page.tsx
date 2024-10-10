@@ -100,40 +100,44 @@ const Admin = () => {
             <span className='text-[23px]'>BeeSound</span>
           </Link>
         </div>
-        <div className='flex h-[90vh] items-center justify-between flex-col'>
+        <div className=' w-full flex h-[90vh] items-center justify-center flex-col'>
           <div className='h-[20vh] flex items-center justify-center'>
             <h1 className='text-5xl font-semibold text-secondary'>Admin</h1>
           </div>
-          <div className='w-full flex flex-col items-center justify-center h-[60vh]'>
+          <div className='w-[90%] flex flex-col items-center justify-center h-[70vh]'>
             <form
               onSubmit={loginHandler}
-              className='bg-secondary p-20 text-white rounded-xl flex flex-col gap-5'>
-              <div className='flex items-center justify-between gap-5 w-full'>
-                <label htmlFor='email' className='w-[100px]'>
+              className='bg-secondary p-20 text-white rounded-xl flex flex-col gap-5 w-[90%]'>
+              <div className='flex items-center justify-center gap-5 w-full'>
+                <label
+                  htmlFor='email'
+                  className='lg:w-full lg:flex min-w-[40px] flex sm:hidden xsm:hidden'>
                   Email:
                 </label>
-                <div className=''>
+                <div className='w-full'>
                   <input
                     type='email'
                     placeholder='Email'
                     name='email'
                     onChange={changeHandler}
-                    className='bg-secondary outline-none font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full w-[400px] p-4'
+                    className='bg-secondary outline-none font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full p-4 w-full'
                   />
                   {errors.email && <p className='error-text'>{errors.email}</p>}
                 </div>
               </div>
-              <div className='flex items-center gap-5 w-full'>
-                <label htmlFor='password' className='w-[100px]'>
+              <div className='flex items-center justify-center gap-5 w-full'>
+                <label
+                  htmlFor='password'
+                  className='lg:w-full lg:flex min-w-[40px] flex sm:hidden xsm:hidden '>
                   Password:
                 </label>
-                <div className=''>
+                <div className='w-full'>
                   <input
                     type='password'
                     placeholder='Password'
                     name='password'
                     onChange={changeHandler}
-                    className='bg-secondary outline-none font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full w-[400px] p-4'
+                    className='bg-secondary outline-none  font-medium text-white border-2 focus:border-2 focus:border-primary border-white rounded-full p-4 w-full'
                   />
                   {errors.password && (
                     <p className='error-text'>{errors.password}</p>
@@ -147,12 +151,16 @@ const Admin = () => {
                   Sign in
                 </button>
               </div>
+              <div className='text-gray-500 flex flex-col items-center justify-center'>
+                <p>email:admin@beesound.com</p>
+                <p>password: admin123</p>
+              </div>
             </form>
           </div>
         </div>
-        <div className='h-[10vh] flex justify-end w-full px-10'>
+        <div className='h-[20vh] flex lg:justify-end justify-center w-full px-10'>
           <Link
-            href='/sign-up'
+            href='/'
             className='border-2 border-primary hover:bg-primary hover:text-white text-primary h-fit py-2 px-10 rounded-full font-medium'>
             Back
           </Link>

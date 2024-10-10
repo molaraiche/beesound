@@ -37,7 +37,7 @@ const AddToCart = ({ product }: AddToCartProps) => {
     <div>
       <button
         onClick={addToCartHandler}
-        className='flex items-center gap-1 bg-primary primary-2 py-2 px-4 rounded-lg text-white hover:bg-opacity-2 gap-2'>
+        className='flex items-center gap-2 bg-primary primary-2 py-2 px-4 rounded-lg text-white hover:bg-opacity-2 '>
         <FaCartPlus className='w-[26px] h-[26px]' title='Add to cart' />
         <span> Add To Cart </span>
       </button>
