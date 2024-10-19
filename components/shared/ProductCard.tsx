@@ -32,7 +32,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <div className='mt-5 p-2'>
+      <div className='mt-5 p-2 flex flex-col gap-3'>
         <h3 className='text-2xl font-medium'>{title}</h3>
         {oldPrice && (
           <p className='text-2xl font-medium text-red-500 line-through'>
@@ -40,7 +40,9 @@ const ProductCard = ({
           </p>
         )}
         <div className='flex items-center justify-between'>
-          <p className='text-2xl font-medium'>$ {price} </p>
+          <p className='text-2xl font-medium '>$ {price} </p>
+        </div>
+        <div className='flex justify-end'>
           <AddToCart
             product={{
               id: id || "",
