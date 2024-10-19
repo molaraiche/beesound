@@ -55,14 +55,6 @@ const ProductsDetails = async ({
         </div>
         <div className='flex justify-center w-[40%] flex-col'>
           <h1 className='text-2xl font-medium'>{title}</h1>
-          <div className='flex gap-2 my-3'>
-            {colors.map((color) => (
-              <div
-                key={color}
-                style={{ background: color }}
-                className={`w-[27px] h-[27px] rounded-full `}></div>
-            ))}
-          </div>
           {oldPrice && (
             <p className='text-2xl font-medium text-red-500 line-through'>
               ${oldPrice}

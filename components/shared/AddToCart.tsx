@@ -1,5 +1,6 @@
 "use client";
 import { FaCartPlus } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 interface AddToCartProps {
   product: {
@@ -27,9 +28,9 @@ const AddToCart = ({ product }: AddToCartProps) => {
     if (!productExists) {
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log("Product added to cart");
+      toast.success("Product added to cart");
     } else {
-      console.log("Product is already in the cart");
+      toast.info("Product is already in the cart");
     }
   };
 
@@ -37,7 +38,7 @@ const AddToCart = ({ product }: AddToCartProps) => {
     <div>
       <button
         onClick={addToCartHandler}
-        className='flex items-center gap-2 bg-primary primary-2 py-2 px-4 rounded-lg text-white hover:bg-opacity-2 '>
+        className='flex items-center gap-2 bg-primary primary-2 py-2 px-4 rounded-lg text-white hover:bg-opacity-2'>
         <FaCartPlus className='w-[26px] h-[26px]' title='Add to cart' />
         <span> Add To Cart </span>
       </button>

@@ -34,14 +34,6 @@ const ProductCard = ({
       </div>
       <div className='mt-5 p-2'>
         <h3 className='text-2xl font-medium'>{title}</h3>
-        <div className='flex gap-2 my-5'>
-          {colors.map((color) => (
-            <div
-              key={color}
-              style={{ background: color }}
-              className='w-[27px] h-[27px] rounded-full border border-white'></div>
-          ))}
-        </div>
         {oldPrice && (
           <p className='text-2xl font-medium text-red-500 line-through'>
             $ {oldPrice}
