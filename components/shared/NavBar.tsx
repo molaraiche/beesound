@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TbShoppingBag } from "react-icons/tb";
@@ -7,6 +7,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
 import { getAllCollection } from "@/utils/server.action";
 import { productType } from "@/types/types";
+import { useCart } from "@/context/CartContext";
 
 interface menuType {
   menu: boolean;
@@ -23,8 +24,9 @@ const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<productType[]>([]);
   const [allProducts, setAllProducts] = useState<productType[]>([]);
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  const searchRef = useRef<HTMLDivElement>(null); // Reference for the search container
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const { cartItemsCount } = useCart();
 
   useEffect(() => {
     async function fetchProducts() {
@@ -32,9 +34,6 @@ const NavBar = () => {
       setAllProducts(products);
     }
     fetchProducts();
-
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartItemsCount(storedCart.length);
   }, []);
 
   const menuHandler = () => setMenu({ menu: !menu.menu });
@@ -87,10 +86,9 @@ const NavBar = () => {
         className={`flex gap-[85px] lg:static absolute top-[15vh] lg:bg-dark-white bg-secondary  lg:flex-row flex-col right-0 lg:w-fit w-full items-center lg:py-0 py-4 lg:text-black text-white transition-all z-10
         ${
           menu.menu
-            ? "lg:translate-y-0 -translate-y-[200%] "
+            ? "lg:translate-y-0 -translate-y-[200%]"
             : "-translate-y-[0%]"
-        }
-        `}>
+        }`}>
         <Link
           href='/collection'
           onClick={closeHandler}
@@ -107,18 +105,16 @@ const NavBar = () => {
           href='/gamers'
           onClick={closeHandler}
           className='font-semibold hover:text-primary'>
-          For Gamers{" "}
+          For Gamers
         </Link>
       </nav>
 
       <div
-        className={`flex justify-between lg:gap-20 xsm:gap-10 lg:static absolute top-[45vh] right-0 lg:w-fit w-full sm:flex-row xsm:flex-col items-center lg:py-0 p-4 lg:bg-dark-white bg-secondary text-white lg:text-black transition-all z-10
-        ${
+        className={`flex justify-between lg:gap-20 xsm:gap-10 lg:static absolute top-[45vh] right-0 lg:w-fit w-full sm:flex-row xsm:flex-col items-center lg:py-0 p-4 lg:bg-dark-white bg-secondary text-white lg:text-black transition-all z-10 ${
           menu.menu
             ? " lg:translate-y-0 -translate-y-[800%]"
             : "-translate-y-[0%]"
-        }
-        `}>
+        }`}>
         <div className='flex items-center gap-4 '>
           <div
             className='flex flex-col items-center justify-center search-container'
@@ -166,7 +162,7 @@ const NavBar = () => {
             <div className='relative'>
               <TbShoppingBag
                 title='Cart'
-                className='w-[24px] h-[24px] '
+                className='w-[24px] h-[24px]'
                 onClick={closeHandler}
               />
               {cartItemsCount > 0 && (

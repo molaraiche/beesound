@@ -5,6 +5,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { productSchema } from "@/schema/productSchema";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const AddFormInputs = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -91,6 +92,8 @@ const AddFormInputs = () => {
     }
 
     addProduct(result.data);
+    toast.success(`Product has beed added`);
+
     route.push("/admin/board");
   };
 

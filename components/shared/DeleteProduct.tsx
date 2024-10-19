@@ -4,6 +4,7 @@ import { deleteProduct, getAllCollection } from "@/utils/server.action";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 interface DeleteProductProps {
   id: string;
@@ -31,9 +32,11 @@ const DeleteProduct: React.FC<DeleteProductProps> = ({ id }) => {
       try {
         await deleteProduct(productId);
         setProducts(products.filter((product) => product.id !== productId));
+        toast.done("Product has been deleted");
         router.refresh();
       } catch (error) {
         console.error("Error deleting product:", error);
+        toast.error(`Error: ${error}`);
       }
     }
   };

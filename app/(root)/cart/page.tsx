@@ -6,6 +6,7 @@ import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import CheckoutButton from "@/components/shared/CheckoutButton";
 import { productType } from "@/types/types";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<productType[]>([]);
@@ -67,8 +68,10 @@ const Cart = () => {
               onRemove={() => {
                 if (item.id) {
                   removeFromCart(item.id);
+                  toast.success(` ${item.title}  has been Deleted`);
                 } else {
                   console.error("Item id is undefined");
+                  toast.error(`We couldn't delete the product`);
                 }
               }}
             />

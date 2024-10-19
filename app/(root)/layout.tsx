@@ -6,6 +6,7 @@ import Footer from "@/components/shared/Footer";
 import TopNavBar from "@/components/shared/TopNavBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import the CSS
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,10 +30,12 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased bg-dark-white`}>
         <TopNavBar />
         <main>
-          <NavBar />
-          {children}
-          <ToastContainer position='bottom-right' />
-          <Footer />
+          <CartProvider>
+            <NavBar />
+            {children}
+            <ToastContainer position='bottom-right' />
+            <Footer />
+          </CartProvider>
         </main>
       </body>
     </html>

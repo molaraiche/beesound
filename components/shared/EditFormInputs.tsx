@@ -4,6 +4,7 @@ import { productType } from "@/types/types";
 import { getProductById, updateProduct } from "@/utils/server.action";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface EditFormInputsProps {
   productId: string | null;
@@ -108,6 +109,7 @@ const EditFormInputs: React.FC<EditFormInputsProps> = ({ productId }) => {
     }
     if (productId) {
       await updateProduct(productId, result.data);
+      toast.success(`Product with id: ${productId}  has been updated`);
     }
   };
 

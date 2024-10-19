@@ -1,6 +1,7 @@
 "use client";
 import { FaCartPlus } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { useCart } from "@/context/CartContext";
 
 interface AddToCartProps {
   product: {
@@ -20,17 +21,21 @@ interface CartItem {
 }
 
 const AddToCart = ({ product }: AddToCartProps) => {
+  const { updateCartCount } = useCart();
+
   const addToCartHandler = (e: React.MouseEvent) => {
     e.preventDefault();
+
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const productExists = cart.some((item: CartItem) => item.id === product.id);
 
     if (!productExists) {
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
-      toast.success("Product added to cart");
+      updateCartCount(cart.length);
+      toast.success(`${product.title} has been added to cart`);
     } else {
-      toast.info("Product is already in the cart");
+      toast.info(`${product.title} already in cart !`);
     }
   };
 
