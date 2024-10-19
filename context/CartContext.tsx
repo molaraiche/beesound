@@ -1,5 +1,11 @@
 "use client";
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface CartContextProps {
   cartItemsCount: number;
@@ -9,10 +15,14 @@ interface CartContextProps {
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItemsCount, setCartItemsCount] = useState<number>(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    return storedCart.length;
-  });
+  const [cartItemsCount, setCartItemsCount] = useState<number>(0); 
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartItemsCount(storedCart.length);
+    }
+  }, []);
 
   const updateCartCount = (count: number) => {
     setCartItemsCount(count);

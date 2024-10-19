@@ -7,9 +7,18 @@ import { GoArrowLeft } from "react-icons/go";
 import CheckoutButton from "@/components/shared/CheckoutButton";
 import { productType } from "@/types/types";
 import { toast } from "react-toastify";
+import { useCart } from "@/context/CartContext"; 
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<productType[]>([]);
+  const { updateCartCount } = useCart();
+
+  const [cartItems, setCartItems] = useState<productType[]>(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("cart") || "[]");
+    }
+    return [];
+  });
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(storedCart);
@@ -23,6 +32,7 @@ const Cart = () => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCartCount(updatedCart.length);
   };
 
   return (
