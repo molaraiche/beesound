@@ -4,6 +4,9 @@ import NavBar from "@/components/shared/NavBar";
 import "../globals.css";
 import Footer from "@/components/shared/Footer";
 import TopNavBar from "@/components/shared/TopNavBar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import the CSS
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,7 +17,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "BeeSound | molaraiche",
   description:
-    "BeeSound is an ecommerce websie developed by molaraiche (Mohamed Laraiche) using, next js tailwind typescript and lot of others techs",
+    "BeeSound is an ecommerce website developed by molaraiche (Mohamed Laraiche) using Next.js, Tailwind, TypeScript, and other technologies",
 };
 
 export default function RootLayout({
@@ -24,12 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased bg-dark-white`}>
         <TopNavBar />
         <main>
-          <NavBar />
-          {children}
-          <Footer />
+          <CartProvider>
+            <NavBar />
+            {children}
+            <ToastContainer position='bottom-right' />
+            <Footer />
+          </CartProvider>
         </main>
       </body>
     </html>

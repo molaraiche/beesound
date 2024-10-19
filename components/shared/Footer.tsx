@@ -30,22 +30,22 @@ const Footer = () => {
             <div className='flex gap-[25px] items-center justify-center'>
               <Link
                 href='/'
-                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
+                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center hover:text-primary'>
                 <FaInstagram className='w-[26px] h-[26px]' />
               </Link>
               <Link
                 href='/'
-                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
+                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center hover:text-primary'>
                 <FaLinkedinIn className='w-[26px] h-[26px]' />
               </Link>
               <Link
                 href='/'
-                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
+                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center hover:text-primary'>
                 <FaTelegramPlane className='w-[26px] h-[26px]' />
               </Link>
               <Link
                 href='/'
-                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center'>
+                className='w-[42px] h-[42px] rounded-full bg-[#E8E8E8] p-3 flex items-center justify-center hover:text-primary'>
                 <FaWhatsapp className='w-[26px] h-[26px]' />
               </Link>
             </div>
@@ -86,7 +86,7 @@ const Footer = () => {
                 className='bg-[#E8E8E8] p-4 w-[307px] rounded-[10px]'
                 placeholder='Enter Your Email'
               />
-              <button className='p-4 bg-[#1B234A] w-[307px] mt-3 text-[#787878] rounded-[10px]'>
+              <button className='p-4 bg-secondary w-[307px] mt-3 text-[#787878] rounded-[10px] border-2 border-secondary hover:border-primary hover:bg-primary hover:text-dark-white font-semibold'>
                 Submit Your Email
               </button>
             </form>
