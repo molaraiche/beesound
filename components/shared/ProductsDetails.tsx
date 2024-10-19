@@ -89,7 +89,7 @@ const ProductsDetails = async ({
         <h1 className='text-2xl font-medium mt-4'>Related Porudcts</h1>
         <div className='flex items-center justify-center my-10 gap-10 min-h-[40vh] h-auto lg:flex-nowrap flex-wrap'>
           {products.map((product: productType) => (
-            <Link href={`/${product.type}/${product.id}`} key={product.id}>
+            <Link href={`/collection/${product.id}`} key={product.id}>
               <div className='bg-dark-white w-[300px] min-h-[200px] h-fit flex flex-col items-center justify-center gap-4 '>
                 <Image
                   src={product.image}
