@@ -6,9 +6,19 @@ import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import CheckoutButton from "@/components/shared/CheckoutButton";
 import { productType } from "@/types/types";
+import { toast } from "react-toastify";
+import { useCart } from "@/context/CartContext"; 
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<productType[]>([]);
+  const { updateCartCount } = useCart();
+
+  const [cartItems, setCartItems] = useState<productType[]>(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("cart") || "[]");
+    }
+    return [];
+  });
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(storedCart);
@@ -22,6 +32,7 @@ const Cart = () => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCartCount(updatedCart.length);
   };
 
   return (
@@ -37,19 +48,19 @@ const Cart = () => {
       </div>
       <div className='min-h-[20vh] h-auto'>
         <div className='flex items-center justify-between px-10 bg-dark-white mt-10'>
-          <div className='flex items-center justify-between w-[80%] my-5'>
-            <p className='text-center font-medium text-secondary'>
+          <div className='flex items-center justify-between w-full my-5'>
+            <p className='text-center w-[25%] font-medium text-secondary'>
               Product Image
             </p>
-            <p className='text-center font-medium text-secondary'>
+            <p className='text-center w-[25%] font-medium text-secondary'>
               Product Title
             </p>
-            <p className='text-center font-medium text-secondary'>
-              Product Color
-            </p>
           </div>
-          <div className='w-[20%] flex items-center justify-center'>
+          <div className='flex w-[25%] items-center justify-center'>
             <p>Price</p>
+          </div>
+          <div className='flex w-[25%] items-center justify-center'>
+            <p>Delete</p>
           </div>
         </div>
         {cartItems.length > 0 ? (
@@ -67,8 +78,10 @@ const Cart = () => {
               onRemove={() => {
                 if (item.id) {
                   removeFromCart(item.id);
+                  toast.success(` ${item.title}  has been Deleted`);
                 } else {
                   console.error("Item id is undefined");
+                  toast.error(`We couldn't delete the product`);
                 }
               }}
             />

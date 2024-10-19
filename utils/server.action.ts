@@ -52,7 +52,7 @@ export const updateProduct = async (id: string, productData: productType) => {
   try {
     const productRef = doc(db, "products", id);
     await updateDoc(productRef, {
-      ...productData, 
+      ...productData,
     });
     console.log("Product updated successfully with ID:", id);
   } catch (error) {
@@ -69,27 +69,6 @@ export const deleteProduct = async (productId: string) => {
   }
 };
 
-export const getCollectionProducts = async (): Promise<productType[]> => {
-  const q = query(
-    collection(db, "products"),
-    where("type", "==", "Collection")
-  );
-  const querySnapshot = await getDocs(q);
-  const products = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })) as productType[];
-  return products;
-};
-export const getArrivalsProducts = async (): Promise<productType[]> => {
-  const q = query(collection(db, "products"), where("type", "==", "Arrivals"));
-  const querySnapshot = await getDocs(q);
-  const products = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })) as productType[];
-  return products;
-};
 export const getGamersProducts = async (): Promise<productType[]> => {
   const q = query(collection(db, "products"), where("type", "==", "Gamers"));
   const querySnapshot = await getDocs(q);

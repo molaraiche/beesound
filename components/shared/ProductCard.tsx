@@ -32,23 +32,17 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <div className='mt-5 p-2'>
+      <div className='mt-5 p-2 flex flex-col gap-3'>
         <h3 className='text-2xl font-medium'>{title}</h3>
-        <div className='flex gap-2 my-5'>
-          {colors.map((color) => (
-            <div
-              key={color}
-              style={{ background: color }}
-              className='w-[27px] h-[27px] rounded-full border border-white'></div>
-          ))}
-        </div>
         {oldPrice && (
           <p className='text-2xl font-medium text-red-500 line-through'>
             $ {oldPrice}
           </p>
         )}
         <div className='flex items-center justify-between'>
-          <p className='text-2xl font-medium'>$ {price} </p>
+          <p className='text-2xl font-medium '>$ {price} </p>
+        </div>
+        <div className='flex justify-end'>
           <AddToCart
             product={{
               id: id || "",
