@@ -31,8 +31,6 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## ✨ Features
 
-If your project has a lot of features, list them here.
-
 - Responsive design using Tailwind CSS for mobile, tablet, and desktop views.
 - Admin dashboard for managing products (add, edit, delete).
 - Product search and filter functionality.
