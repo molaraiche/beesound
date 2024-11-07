@@ -2,7 +2,7 @@
 
 ## 🌐 Demo
 
-Here is a working live demo: https://beesound.vercel.app/
+Here is a working live demo: https://beesound.molaraiche.com/
 
 ## 📝 Description
 
