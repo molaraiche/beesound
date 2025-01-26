@@ -1,6 +1,6 @@
 ![Beesound](./public/ss.png "Beesound Screenshot")
 
-# Lemonwares
+# Beesound
 
 A fully functional, responsive e-commerce website built with the latest technologies, high performance, and support for the famous Payment process.
 
