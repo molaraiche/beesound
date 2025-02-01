@@ -25,6 +25,23 @@ I built this project as a training in creating a real functional application.
 - [Firebase](https://firebase.google.com/)
 - [Stripe](https://stripe.com/)
 
+## 🚀 Running the Development Server
+
+```bash
+
+# clone the project
+git clone https://github.com/molaraiche/beesound.git
+
+# go to the folder
+cd beesound
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
 ## Developer Contact
 
 [molaraiche](http://molaraiche.com/)
+```
