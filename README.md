@@ -40,8 +40,8 @@ npm install
 
 # Start the development server
 npm run dev
+```
 
 ## Developer Contact
 
 [molaraiche](http://molaraiche.com/)
-```
