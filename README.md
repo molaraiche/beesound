@@ -1,4 +1,4 @@
-![Beesound](./public/ss.png "Beesound Screenshot")
+![Beesound](./ss.png "Beesound Screenshot")
 
 # Beesound
 
