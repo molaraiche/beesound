@@ -15,9 +15,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BeeSound | molaraiche",
+  title:
+    "Beesound | High-Performance E-Commerce Website | Next.js, Stripe, SEO Optimized",
   description:
-    "BeeSound is an ecommerce website developed by molaraiche (Mohamed Laraiche) using Next.js, Tailwind, TypeScript, and other technologies",
+    "Beesound is an ecommerce website developed by molaraiche (Mohamed Laraiche) using Next.js, Tailwind, TypeScript, and other technologies",
 };
 
 export default function RootLayout({

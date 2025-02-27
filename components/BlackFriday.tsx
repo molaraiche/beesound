@@ -11,13 +11,13 @@ const BlackFriday = async () => {
     <div className='bg-dark-black'>
       <div className='lg:container lg:mx-auto md:px-14 sm:px-10 xsm:px-4 py-28'>
         <div className='flex text-white justify-between lg:flex-nowrap flex-wrap gap-10'>
-          <div className='my-10 flex flex-col lg:items-start items-center w-full'>
+          <div className='my-10 flex flex-col lg:items-start items-center'>
             <h1 className='text-[40px] font-medium leading-[54px]'>
               Our Black Friday Discount
             </h1>
             <Counter />
           </div>
-          <div className='flex lg:flex-nowrap flex-wrap items-center justify-center gap-5 '>
+          <div className='flex lg:flex-nowrap flex-wrap items-center justify-center gap-10 '>
             {products.map((product: productType) => (
               <Link href={`/collection/${product.id}`} key={product.id}>
                 <ProductCard

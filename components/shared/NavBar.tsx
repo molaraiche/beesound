@@ -80,7 +80,7 @@ const NavBar = () => {
           width={14}
           height={19}
         />
-        <span className='text-[23px]'>BeeSound</span>
+        <span className='text-[23px]'>Beesound</span>
       </Link>
       <nav
         className={`flex gap-[85px] lg:static absolute top-[15vh] lg:bg-dark-white bg-secondary  lg:flex-row flex-col right-0 lg:w-fit w-full items-center lg:py-0 py-4 lg:text-black text-white transition-all z-10

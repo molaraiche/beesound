@@ -13,34 +13,36 @@ const ProductCard = ({
 }: productType) => {
   return (
     <div
-      className={` w-[350px] min-h-[500px] h-fit  relative lg:my-0 my-10 shadow-md rounded-lg`}>
+      className={`h-[440px] relative lg:my-0 my-10 shadow-md rounded-lg p-2.5 flex flex-col justify-between`}>
       <div className='bg-dark-white flex items-center justify-center rounded-[5px] '>
         <div className='flex'>
           {discount ? (
-            <div className='absolute top-1 left-2 rounded-full bg-[#F00] w-[200px] h-[40px] flex items-center justify-center text-white font-semibold'>
+            <div className='absolute top-4 left-4 rounded-full bg-[#F00] w-fit px-2 h-[30px] flex items-center justify-center text-white font-semibold'>
               BIG DISCOUNT !
             </div>
           ) : null}
-          <div className='m-10'>
+          <div className='m-10 h-[200px] flex items-center justify-center'>
             <Image
               src={image}
               alt={title}
               width={300}
               height={300}
-              className='w-[179px] h-[242px] object-cover'
+              className='object-cover'
             />
           </div>
         </div>
       </div>
-      <div className='mt-5 p-2 flex flex-col gap-3'>
-        <h3 className='text-2xl font-medium'>{title}</h3>
+      <div className='p-2 flex flex-col gap-3'>
+        <h3 className='text-lg font-medium'>{title}</h3>
         {oldPrice && (
-          <p className='text-2xl font-medium text-red-500 line-through'>
+          <p className='text-2xl font-medium text-red-500 line-through w-full flex justify-end'>
             $ {oldPrice}
           </p>
         )}
         <div className='flex items-center justify-between'>
-          <p className='text-2xl font-medium '>$ {price} </p>
+          <p className='text-2xl font-medium text-green-500 w-full flex justify-end pr-2'>
+            $ {price}
+          </p>
         </div>
         <div className='flex justify-end'>
           <AddToCart
